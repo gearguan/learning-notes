@@ -1,0 +1,246 @@
+---
+layout: default
+---
+
+<article class="note">
+  <header class="note-header">
+    <h1 class="note-title">{{ page.title }}</h1>
+    <div class="note-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">
+        {{ page.date | date: "%Y年%m月%d日" }}
+      </time>
+      {% if page.tags %}
+        <div class="note-tags">
+          {% for tag in page.tags %}
+            <span class="tag">{{ tag }}</span>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="note-content">
+    {{ content }}
+  </div>
+
+  {% if page.references %}
+  <section class="references">
+    <h2>参考资料</h2>
+    <ul>
+      {% for ref in page.references %}
+        <li>{{ ref }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  <footer class="note-footer">
+    <div class="note-navigation">
+      {% if page.previous %}
+        <a href="{{ page.previous.url }}" class="prev-note">
+          ← {{ page.previous.title }}
+        </a>
+      {% endif %}
+      {% if page.next %}
+        <a href="{{ page.next.url }}" class="next-note">
+          {{ page.next.title }} →
+        </a>
+      {% endif %}
+    </div>
+  </footer>
+</article>
+
+<!-- MathJax 配置 -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: {
+      equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+  }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<!-- 自动编号和引用脚本 -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // 自动为图片编号
+  const figures = document.querySelectorAll('figure[id^="fig-"]');
+  figures.forEach((figure, index) => {
+    const caption = figure.querySelector('figcaption');
+    if (caption && !caption.textContent.match(/^图\d+/)) {
+      const figNum = index + 1;
+      caption.textContent = `图${figNum}: ${caption.textContent}`;
+    }
+  });
+
+  // 自动为表格编号
+  const tables = document.querySelectorAll('div[id^="table-"]');
+  tables.forEach((tableDiv, index) => {
+    const caption = tableDiv.querySelector('.table-caption');
+    if (caption && !caption.textContent.match(/^表\d+/)) {
+      const tableNum = index + 1;
+      caption.textContent = `表${tableNum}: ${caption.textContent}`;
+    }
+  });
+
+  // 平滑滚动到锚点
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+        // 高亮目标元素
+        target.style.backgroundColor = '#fff3cd';
+        setTimeout(() => {
+          target.style.backgroundColor = '';
+        }, 2000);
+      }
+    });
+  });
+});
+</script>
+
+<style>
+.note {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  line-height: 1.6;
+}
+
+.note-header {
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.note-title {
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.note-meta {
+  color: #6c757d;
+  font-size: 0.9em;
+}
+
+.note-tags {
+  margin-top: 10px;
+}
+
+.tag {
+  background: #e9ecef;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.8em;
+  margin-right: 5px;
+}
+
+.note-content {
+  margin-bottom: 40px;
+}
+
+.note-content figure {
+  text-align: center;
+  margin: 20px 0;
+  padding: 10px;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+}
+
+.note-content figure img {
+  max-width: 100%;
+  height: auto;
+}
+
+.note-content figcaption {
+  margin-top: 10px;
+  font-style: italic;
+  color: #6c757d;
+}
+
+.note-content .table-wrapper {
+  margin: 20px 0;
+  padding: 10px;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+}
+
+.note-content .table-caption {
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #495057;
+}
+
+.note-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0;
+}
+
+.note-content table th,
+.note-content table td {
+  border: 1px solid #dee2e6;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.note-content table th {
+  background-color: #f8f9fa;
+  font-weight: bold;
+}
+
+.references {
+  border-top: 1px solid #e9ecef;
+  padding-top: 20px;
+  margin-top: 40px;
+}
+
+.note-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #e9ecef;
+}
+
+.prev-note,
+.next-note {
+  color: #007bff;
+  text-decoration: none;
+  padding: 10px 15px;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.prev-note:hover,
+.next-note:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .note {
+    padding: 10px;
+  }
+  
+  .note-navigation {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+</style> 

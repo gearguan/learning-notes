@@ -1,0 +1,68 @@
+# 网站基本信息
+title: "我的学习笔记"
+description: "记录学习过程中的知识点、思考和总结"
+author: "gearguan@gmail.com"
+email: "gearguan@gmail.com"
+baseurl: "" # 如果部署到 username.github.io/repository-name，这里填 "/repository-name"
+url: "https://gearguan.github.io" # 您的GitHub Pages URL
+
+# 构建设置
+markdown: kramdown
+highlighter: rouge
+theme: minima
+
+# Kramdown 设置（支持数学公式）
+kramdown:
+  math_engine: mathjax
+  syntax_highlighter: rouge
+  input: GFM
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+
+# 插件
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# 排除文件
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - README.md
+
+# 集合配置（用于组织笔记）
+collections:
+  notes:
+    output: true
+    permalink: /:collection/:name/
+
+# 默认设置
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "gearguan@gmail.com"
+  - scope:
+      path: ""
+      type: "notes"
+    values:
+      layout: "note"
+
+# 导航菜单
+navigation:
+  - title: "首页"
+    url: "/"
+  - title: "学习笔记"
+    url: "/notes/"
+  - title: "关于"
+    url: "/about/" 
