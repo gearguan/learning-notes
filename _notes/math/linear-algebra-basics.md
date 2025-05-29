@@ -48,6 +48,7 @@ references:
 
 向量是具有大小和方向的量。在 $n$ 维空间中，向量可以表示为：
 
+<span id="eq-vector"></span>
 $$\begin{equation}
 \mathbf{v} = \begin{pmatrix} v_1 \\ v_2 \\ \vdots \\ v_n \end{pmatrix} \label{eq-vector}
 \end{equation}$$
@@ -57,11 +58,13 @@ $$\begin{equation}
 #### 向量加法
 如[公式 (2)](#eq-vector-add)所示：
 
+<span id="eq-vector-add"></span>
 $$\begin{equation}
 \mathbf{u} + \mathbf{v} = \begin{pmatrix} u_1 + v_1 \\ u_2 + v_2 \\ \vdots \\ u_n + v_n \end{pmatrix} \label{eq-vector-add}
 \end{equation}$$
 
 #### 数量乘法
+<span id="eq-scalar-mult"></span>
 $$\begin{equation}
 c\mathbf{v} = \begin{pmatrix} cv_1 \\ cv_2 \\ \vdots \\ cv_n \end{pmatrix} \label{eq-scalar-mult}
 \end{equation}$$
@@ -74,6 +77,7 @@ c\mathbf{v} = \begin{pmatrix} cv_1 \\ cv_2 \\ \vdots \\ cv_n \end{pmatrix} \labe
 
 对于矩阵 $\mathbf{A} \in \mathbb{R}^{m \times n}$ 和 $\mathbf{B} \in \mathbb{R}^{n \times p}$，其乘积 $\mathbf{C} = \mathbf{AB}$ 的元素为：
 
+<span id="eq-matrix-mult"></span>
 $$\begin{equation}
 c_{ij} = \sum_{k=1}^{n} a_{ik}b_{kj} \label{eq-matrix-mult}
 \end{equation}$$

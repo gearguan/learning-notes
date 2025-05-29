@@ -21,6 +21,7 @@ references:
 
 机器人各关节之间的位置关系可以用齐次变换矩阵表示，如[公式 (1)](#eq-transform)所示：
 
+<span id="eq-transform"></span>
 $$\begin{equation}
 {}^{i-1}T_i = \begin{pmatrix}
 {}^{i-1}R_i & {}^{i-1}p_i \\
@@ -141,6 +142,7 @@ $$\begin{equation}
 
 正运动学的变换矩阵为：
 
+<span id="eq-forward-kinematics"></span>
 $$\begin{equation}
 {}^0T_n = \prod_{i=1}^{n} {}^{i-1}T_i = {}^0T_1 \cdot {}^1T_2 \cdots {}^{n-1}T_n \label{eq-forward-kinematics}
 \end{equation}$$
@@ -149,6 +151,7 @@ $$\begin{equation}
 
 根据[表1](#table-dh-params)的DH参数，标准变换矩阵为：
 
+<span id="eq-dh-transform"></span>
 $$\begin{equation}
 {}^{i-1}T_i = \begin{pmatrix}
 \cos\theta_i & -\sin\theta_i\cos\alpha_i & \sin\theta_i\sin\alpha_i & a_i\cos\theta_i \\
@@ -164,6 +167,7 @@ $$\begin{equation}
 
 逆运动学求解给定末端执行器位姿时的关节角度。这是一个非线性方程组求解问题：
 
+<span id="eq-inverse-kinematics"></span>
 $$\begin{equation}
 f(\mathbf{q}) = \mathbf{x}_d \label{eq-inverse-kinematics}
 \end{equation}$$
@@ -276,6 +280,7 @@ f(\mathbf{q}) = \mathbf{x}_d \label{eq-inverse-kinematics}
 
 关节速度与末端速度的关系如[公式 (5)](#eq-jacobian)所示：
 
+<span id="eq-jacobian"></span>
 $$\begin{equation}
 \mathbf{v} = J(\mathbf{q})\dot{\mathbf{q}} \label{eq-jacobian}
 \end{equation}$$
