@@ -3,6 +3,25 @@ layout: default
 ---
 
 <article class="note">
+  <!-- 顶部搜索功能 -->
+  <div class="top-search">
+    <button class="search-trigger" onclick="toggleSearch()" title="搜索笔记">
+      <span class="search-icon">🔍</span>
+    </button>
+    
+    <div class="search-container" id="search-container">
+      <div class="search-input-wrapper">
+        <input type="text" id="global-search-input" placeholder="搜索笔记标题或内容..." autocomplete="off">
+        <button class="search-close" onclick="toggleSearch()">×</button>
+      </div>
+      
+      <div class="search-results-container" id="search-results-container">
+        <div class="search-stats" id="search-stats"></div>
+        <ul class="global-search-results" id="global-search-results"></ul>
+      </div>
+    </div>
+  </div>
+
   <header class="note-header">
     <h1 class="note-title">{{ page.title }}</h1>
     <div class="note-meta">
@@ -50,8 +69,9 @@ layout: default
     </div>
     
     <div class="nav-subjects">
-      {% assign subjects = site.notes | map: "subject" | uniq | sort %}
-      {% for subject in subjects %}
+      {% comment %} 安全地获取学科列表，过滤空值 {% endcomment %}
+      {% assign all_subjects = site.notes | map: "subject" | compact | uniq | sort %}
+      {% for subject in all_subjects %}
         {% if subject and subject != "" %}
         <div class="subject-section">
           <h4 class="subject-title" onclick="toggleSubject('{{ subject | slugify }}')">
@@ -72,6 +92,27 @@ layout: default
         </div>
         {% endif %}
       {% endfor %}
+      
+      {% comment %} 处理没有subject字段的笔记 {% endcomment %}
+      {% assign notes_without_subject = site.notes | where_exp: "note", "note.subject == nil or note.subject == ''" %}
+      {% if notes_without_subject.size > 0 %}
+      <div class="subject-section">
+        <h4 class="subject-title" onclick="toggleSubject('uncategorized')">
+          未分类
+          <span class="toggle-icon">▼</span>
+        </h4>
+        <ul class="subject-notes" id="subject-uncategorized">
+          {% for note in notes_without_subject %}
+          <li class="note-item {% if note.url == page.url %}current-note{% endif %}">
+            <a href="{{ note.url | relative_url }}">{{ note.title }}</a>
+            {% if note.difficulty %}
+            <span class="difficulty-badge">{{ note.difficulty }}</span>
+            {% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
     </div>
     
     <div class="nav-footer">
@@ -97,6 +138,22 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<!-- 搜索数据 -->
+<script type="application/json" id="search-data">
+[
+  {% for note in site.notes %}
+  {
+    "title": {{ note.title | jsonify }},
+    "url": {{ note.url | relative_url | jsonify }},
+    "subject": {{ note.subject | default: "未分类" | jsonify }},
+    "tags": {{ note.tags | default: [] | jsonify }},
+    "date": {{ note.date | date: "%Y年%m月%d日" | jsonify }},
+    "content": {{ note.content | strip_html | strip_newlines | truncate: 500 | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+]
+</script>
 
 <!-- 自动编号和引用脚本 -->
 <script>
@@ -177,6 +234,125 @@ document.addEventListener('click', function(e) {
     navContent.classList.remove('active');
   }
 });
+
+// 顶部搜索功能
+let searchData = [];
+let searchTimeout;
+
+// 初始化搜索数据
+function initSearchData() {
+  const searchDataElement = document.getElementById('search-data');
+  if (searchDataElement) {
+    searchData = JSON.parse(searchDataElement.textContent);
+  }
+}
+
+function toggleSearch() {
+  const container = document.getElementById('search-container');
+  const input = document.getElementById('global-search-input');
+  
+  container.classList.toggle('active');
+  
+  if (container.classList.contains('active')) {
+    // 延迟聚焦，等待动画完成
+    setTimeout(() => {
+      input.focus();
+    }, 300);
+  } else {
+    input.value = '';
+    document.getElementById('search-results-container').style.display = 'none';
+  }
+}
+
+function performSearch() {
+  const query = document.getElementById('global-search-input').value.trim();
+  const resultsContainer = document.getElementById('search-results-container');
+  const resultsList = document.getElementById('global-search-results');
+  const statsElement = document.getElementById('search-stats');
+  
+  if (query.length < 2) {
+    resultsContainer.style.display = 'none';
+    return;
+  }
+  
+  resultsContainer.style.display = 'block';
+  
+  const results = searchData.filter(note => {
+    const titleMatch = note.title.toLowerCase().includes(query.toLowerCase());
+    const contentMatch = note.content.toLowerCase().includes(query.toLowerCase());
+    const tagsMatch = note.tags.some(tag => tag.toLowerCase().includes(query.toLowerCase()));
+    const subjectMatch = note.subject.toLowerCase().includes(query.toLowerCase());
+    
+    return titleMatch || contentMatch || tagsMatch || subjectMatch;
+  });
+  
+  // 更新统计信息
+  statsElement.textContent = `找到 ${results.length} 个相关结果`;
+  
+  // 清空结果列表
+  resultsList.innerHTML = '';
+  
+  if (results.length === 0) {
+    resultsList.innerHTML = '<li class="no-results">未找到相关笔记</li>';
+    return;
+  }
+  
+  // 显示搜索结果
+  results.forEach(note => {
+    const li = document.createElement('li');
+    li.className = 'search-result-item';
+    
+    // 高亮匹配的关键词
+    const highlightedTitle = highlightKeyword(note.title, query);
+    const highlightedContent = highlightKeyword(note.content, query);
+    
+    li.innerHTML = `
+      <a href="${note.url}" class="result-title">${highlightedTitle}</a>
+      <div class="result-meta">${note.subject} • ${note.date}</div>
+      <div class="result-snippet">${highlightedContent}</div>
+    `;
+    
+    resultsList.appendChild(li);
+  });
+}
+
+function highlightKeyword(text, keyword) {
+  if (!keyword) return text;
+  
+  const regex = new RegExp(`(${keyword})`, 'gi');
+  return text.replace(regex, '<span class="highlight">$1</span>');
+}
+
+// 搜索输入处理
+document.addEventListener('DOMContentLoaded', function() {
+  initSearchData();
+  
+  const searchInput = document.getElementById('global-search-input');
+  if (searchInput) {
+    searchInput.addEventListener('input', function() {
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(performSearch, 300); // 防抖：300ms后执行搜索
+    });
+    
+    // 按ESC键关闭搜索
+    searchInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        toggleSearch();
+      }
+    });
+  }
+  
+  // 点击外部关闭搜索
+  document.addEventListener('click', function(e) {
+    const searchContainer = document.getElementById('search-container');
+    const searchTrigger = document.querySelector('.search-trigger');
+    
+    if (searchContainer && searchContainer.classList.contains('active') && 
+        !searchContainer.contains(e.target) && !searchTrigger.contains(e.target)) {
+      toggleSearch();
+    }
+  });
+});
 </script>
 
 <style>
@@ -185,6 +361,7 @@ document.addEventListener('click', function(e) {
   margin: 0 auto;
   padding: 20px;
   line-height: 1.6;
+  position: relative;
 }
 
 .note-header {
@@ -533,5 +710,174 @@ document.addEventListener('click', function(e) {
   .nav-text {
     display: none;
   }
+}
+
+/* 顶部搜索样式 */
+.top-search {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.search-trigger {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.search-trigger:hover {
+  background: #e9ecef;
+  transform: scale(1.05);
+}
+
+.search-trigger .search-icon {
+  font-size: 1.2em;
+}
+
+.search-container {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: 400px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  border: 1px solid #e9ecef;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  max-height: 80vh;
+  overflow: hidden;
+}
+
+.search-container.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.search-input-wrapper {
+  padding: 15px;
+  border-bottom: 1px solid #e9ecef;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#global-search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  padding: 8px 0;
+  background: transparent;
+}
+
+#global-search-input::placeholder {
+  color: #6c757d;
+}
+
+.search-close {
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  color: #6c757d;
+  cursor: pointer;
+  padding: 0;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.search-close:hover {
+  background: #e9ecef;
+  color: #495057;
+}
+
+.search-results-container {
+  max-height: calc(80vh - 100px);
+  overflow-y: auto;
+}
+
+.search-stats {
+  padding: 10px 15px;
+  font-size: 0.9em;
+  color: #6c757d;
+  border-bottom: 1px solid #f8f9fa;
+  background: #f8f9fa;
+}
+
+.global-search-results {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.search-result-item {
+  padding: 15px;
+  border-bottom: 1px solid #f8f9fa;
+  transition: background 0.2s ease;
+  cursor: pointer;
+}
+
+.search-result-item:hover {
+  background: #f8f9fa;
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+.result-title {
+  font-weight: 600;
+  color: #007bff;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 5px;
+  font-size: 1em;
+}
+
+.result-title:hover {
+  text-decoration: underline;
+}
+
+.result-meta {
+  font-size: 0.8em;
+  color: #6c757d;
+  margin-bottom: 8px;
+}
+
+.result-snippet {
+  font-size: 0.9em;
+  color: #495057;
+  line-height: 1.4;
+}
+
+.result-snippet .highlight {
+  background: #fff3cd;
+  padding: 1px 2px;
+  border-radius: 2px;
+  font-weight: 500;
+}
+
+.no-results {
+  padding: 30px 15px;
+  text-align: center;
+  color: #6c757d;
+  font-style: italic;
 }
 </style> 
