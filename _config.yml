@@ -42,7 +42,7 @@ exclude:
 collections:
   notes:
     output: true
-    permalink: /:collection/:name/
+    permalink: /:collection/:path/
 
 # 默认设置
 defaults:

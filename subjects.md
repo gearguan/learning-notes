@@ -19,6 +19,7 @@ permalink: /subjects/
   - 📅 {{ note.date | date: "%Y-%m-%d" }}
   - 🏷️ {% for tag in note.tags %}{{ tag }}{% unless forloop.last %}, {% endunless %}{% endfor %}
   - 📊 难度：{{ note.difficulty }}
+  - 🔗 URL调试：{{ note.url }}
 {% endfor %}
 
 ### 🎯 学习路径建议
@@ -39,6 +40,7 @@ permalink: /subjects/
   - 📅 {{ note.date | date: "%Y-%m-%d" }}
   - 🏷️ {% for tag in note.tags %}{{ tag }}{% unless forloop.last %}, {% endunless %}{% endfor %}
   - 📊 难度：{{ note.difficulty }}
+  - 🔗 URL调试：{{ note.url }}
 {% endfor %}
 
 ### 🎯 学习路径建议
