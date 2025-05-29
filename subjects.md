@@ -97,12 +97,42 @@ permalink: /subjects/
 <div id="stats-table" class="table-wrapper">
 <div class="table-caption">各学科笔记统计</div>
 
-| 学科 | 笔记数量 | 最新更新 | 平均难度 |
-|------|----------|----------|----------|
-| 数学 | {{ math_notes | size }} | {% if math_notes.size > 0 %}{{ math_notes | map: 'date' | sort | reverse | first | date: "%Y-%m-%d" }}{% else %}暂无{% endif %} | 基础-中级 |
-| 机器人学 | {{ robotics_notes | size }} | {% if robotics_notes.size > 0 %}{{ robotics_notes | map: 'date' | sort | reverse | first | date: "%Y-%m-%d" }}{% else %}暂无{% endif %} | 中级-高级 |
-| 深度学习 | {{ dl_notes | size }} | {% if dl_notes.size > 0 %}{{ dl_notes | map: 'date' | sort | reverse | first | date: "%Y-%m-%d" }}{% else %}暂无{% endif %} | 中级-高级 |
-| 强化学习 | {{ rl_notes | size }} | {% if rl_notes.size > 0 %}{{ rl_notes | map: 'date' | sort | reverse | first | date: "%Y-%m-%d" }}{% else %}暂无{% endif %} | 高级 |
+<table class="stats-table">
+<thead>
+<tr>
+  <th>学科</th>
+  <th>笔记数量</th>
+  <th>最新更新</th>
+  <th>平均难度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><strong>🔢 数学</strong></td>
+  <td>{{ math_notes | size }}</td>
+  <td>{% if math_notes.size > 0 %}{{ math_notes | map: 'date' | sort | reverse | first | date: "%Y-%m-%d" }}{% else %}暂无{% endif %}</td>
+  <td>基础-中级</td>
+</tr>
+<tr>
+  <td><strong>🤖 机器人学</strong></td>
+  <td>{{ robotics_notes | size }}</td>
+  <td>{% if robotics_notes.size > 0 %}{{ robotics_notes | map: 'date' | sort | reverse | first | date: "%Y-%m-%d" }}{% else %}暂无{% endif %}</td>
+  <td>中级-高级</td>
+</tr>
+<tr>
+  <td><strong>🧠 深度学习</strong></td>
+  <td>{{ dl_notes | size }}</td>
+  <td>{% if dl_notes.size > 0 %}{{ dl_notes | map: 'date' | sort | reverse | first | date: "%Y-%m-%d" }}{% else %}暂无{% endif %}</td>
+  <td>中级-高级</td>
+</tr>
+<tr>
+  <td><strong>🎮 强化学习</strong></td>
+  <td>{{ rl_notes | size }}</td>
+  <td>{% if rl_notes.size > 0 %}{{ rl_notes | map: 'date' | sort | reverse | first | date: "%Y-%m-%d" }}{% else %}暂无{% endif %}</td>
+  <td>高级</td>
+</tr>
+</tbody>
+</table>
 
 </div>
 
@@ -133,26 +163,61 @@ permalink: /subjects/
   color: #495057;
 }
 
-table {
+.stats-table {
   width: 100%;
   border-collapse: collapse;
-  margin: 10px 0;
+  margin: 15px 0;
+  font-size: 0.95em;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-table th,
-table td {
-  border: 1px solid #dee2e6;
-  padding: 8px 12px;
-  text-align: left;
-}
-
-table th {
-  background-color: #f8f9fa;
+.stats-table thead th {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
   font-weight: bold;
+  padding: 15px 12px;
+  text-align: center;
+  border: none;
 }
 
-ul li {
-  margin-bottom: 8px;
+.stats-table tbody td {
+  padding: 12px 12px;
+  border: 1px solid #e0e0e0;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.stats-table tbody tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+.stats-table tbody tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+.stats-table tbody tr:hover {
+  background-color: #e8f4fd;
+  transform: scale(1.01);
+  transition: all 0.2s ease;
+}
+
+.stats-table tbody td:first-child {
+  text-align: left;
+  font-weight: bold;
+  background-color: rgba(102, 126, 234, 0.1);
+}
+
+@media (max-width: 768px) {
+  .stats-table {
+    font-size: 0.85em;
+  }
+  
+  .stats-table th,
+  .stats-table td {
+    padding: 8px 6px;
+  }
 }
 
 hr {

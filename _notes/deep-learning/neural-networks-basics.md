@@ -45,14 +45,99 @@ y = f\left(\sum_{i=1}^{n} w_i x_i + b\right) = f(\mathbf{w}^T\mathbf{x} + b) \la
 <div id="table-activation" class="table-wrapper">
 <div class="table-caption">常用激活函数对比</div>
 
-| 激活函数 | 函数表达式 | 输出范围 | 主要优点 | 主要缺点 |
-|----------|------------|----------|----------|----------|
-| Sigmoid | $\sigma(x) = \frac{1}{1+e^{-x}}$ | (0, 1) | 平滑可导 | 梯度消失 |
-| Tanh | $\tanh(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}}$ | (-1, 1) | 零中心化 | 梯度消失 |
-| ReLU | $\max(0, x)$ | [0, ∞) | 计算简单 | 神经元死亡 |
-| Leaky ReLU | $\max(\alpha x, x)$ | (-∞, ∞) | 避免死亡 | 需调参数 |
+<table class="activation-table">
+<thead>
+<tr>
+  <th>激活函数</th>
+  <th>函数表达式</th>
+  <th>输出范围</th>
+  <th>主要优点</th>
+  <th>主要缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><strong>Sigmoid</strong></td>
+  <td>$\sigma(x) = \frac{1}{1+e^{-x}}$</td>
+  <td>(0, 1)</td>
+  <td>平滑可导</td>
+  <td>梯度消失</td>
+</tr>
+<tr>
+  <td><strong>Tanh</strong></td>
+  <td>$\tanh(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}}$</td>
+  <td>(-1, 1)</td>
+  <td>零中心化</td>
+  <td>梯度消失</td>
+</tr>
+<tr>
+  <td><strong>ReLU</strong></td>
+  <td>$\max(0, x)$</td>
+  <td>[0, ∞)</td>
+  <td>计算简单</td>
+  <td>神经元死亡</td>
+</tr>
+<tr>
+  <td><strong>Leaky ReLU</strong></td>
+  <td>$\max(\alpha x, x)$</td>
+  <td>(-∞, ∞)</td>
+  <td>避免死亡</td>
+  <td>需调参数</td>
+</tr>
+</tbody>
+</table>
 
 </div>
+
+<style>
+.activation-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+  font-size: 0.9em;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.activation-table thead th {
+  background-color: #2c3e50;
+  color: white;
+  font-weight: bold;
+  padding: 12px 8px;
+  text-align: center;
+  border: 1px solid #34495e;
+}
+
+.activation-table tbody td {
+  padding: 10px 8px;
+  border: 1px solid #bdc3c7;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.activation-table tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.activation-table tbody tr:hover {
+  background-color: #e3f2fd;
+}
+
+.activation-table tbody td:first-child {
+  font-weight: bold;
+  background-color: #ecf0f1;
+}
+
+@media (max-width: 768px) {
+  .activation-table {
+    font-size: 0.8em;
+  }
+  
+  .activation-table th,
+  .activation-table td {
+    padding: 6px 4px;
+  }
+}
+</style>
 
 ### 2.2 激活函数详细说明
 
