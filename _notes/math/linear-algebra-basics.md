@@ -1,11 +1,38 @@
 ---
+# Jekyll布局模板，note是自定义的笔记布局，用于统一笔记页面的显示格式
 layout: note
+
+# 笔记标题，会显示在页面顶部和浏览器标签页中
+# 建议使用清晰、描述性的标题
 title: "线性代数基础"
+
+# 创建日期，格式为YYYY-MM-DD，用于笔记排序和时间线显示
+# Jekyll会使用此日期进行内容排序
 date: 2024-01-20
+
+# 分类标签，用于网站导航和内容组织
+# 使用数组格式，可以包含多个分类
+# 保持与现有网站结构一致，使用中文分类名
 categories: [数学]
+
+# 标签列表，用于内容搜索、相关文章推荐和主题聚合
+# 建议使用具体的概念或关键词作为标签
+# 有助于读者发现相关内容
 tags: [线性代数, 矩阵, 向量空间]
+
+# 学科分类，用于按学科浏览笔记和生成学科统计
+# 可选值：数学、深度学习、机器人学、强化学习等
+# 与categories配合使用，提供更精确的分类
 subject: "数学"
+
+# 难度等级，帮助读者选择合适的学习内容
+# 建议使用统一的难度标准：入门、基础、初级、中级、高级、专家级
+# 当前使用"基础"，建议统一为"初级"
 difficulty: "基础"
+
+# 参考文献列表，提供学习资源和引用来源
+# 使用YAML列表格式，每个条目一行
+# 包含教材、在线课程、论文等相关资源
 references:
   - "Gilbert Strang: Introduction to Linear Algebra"
   - "3Blue1Brown: Essence of Linear Algebra"
@@ -63,7 +90,7 @@ c_{ij} = \sum_{k=1}^{n} a_{ik}b_{kj} \label{eq-matrix-mult}
 <div id="table-properties" class="table-wrapper">
 <div class="table-caption">向量和矩阵的重要性质</div>
 
-<table class="math-properties-table">
+<table>
 <thead>
 <tr>
   <th>运算类型</th>
@@ -101,58 +128,6 @@ c_{ij} = \sum_{k=1}^{n} a_{ik}b_{kj} \label{eq-matrix-mult}
 </table>
 
 </div>
-
-<style>
-.note-content .math-properties-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 15px 0;
-  font-size: 0.9em;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.note-content .math-properties-table thead th {
-  background-color: #f5f5f5 !important;
-  color: #333 !important;
-  font-weight: bold;
-  padding: 12px 8px;
-  text-align: center;
-  border: 1px solid #ddd;
-}
-
-.note-content .math-properties-table tbody td {
-  padding: 10px 8px;
-  border: 1px solid #bdc3c7;
-  text-align: center;
-  vertical-align: middle;
-  background-color: white;
-}
-
-.note-content .math-properties-table tbody tr:nth-child(even) td {
-  background-color: #f8f9fa !important;
-}
-
-.note-content .math-properties-table tbody tr:hover td {
-  background-color: #e3f2fd !important;
-}
-
-.note-content .math-properties-table tbody td:first-child {
-  font-weight: bold;
-  background-color: #ecf0f1 !important;
-  text-align: left;
-}
-
-@media (max-width: 768px) {
-  .note-content .math-properties-table {
-    font-size: 0.8em;
-  }
-  
-  .note-content .math-properties-table th,
-  .note-content .math-properties-table td {
-    padding: 6px 4px;
-  }
-}
-</style>
 
 ## 4. 应用实例
 

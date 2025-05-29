@@ -188,28 +188,47 @@ document.addEventListener('DOMContentLoaded', function() {
 .note-content table {
   width: 100%;
   border-collapse: collapse;
-  margin: 10px 0;
-  min-width: 600px;
+  margin: 15px 0;
   font-size: 0.9em;
-}
-
-.note-content table th,
-.note-content table td {
-  border: 1px solid #dee2e6;
-  padding: 8px 12px;
-  text-align: left;
-  vertical-align: top;
-  word-wrap: break-word;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  min-width: 600px;
 }
 
 .note-content table th {
-  background-color: #f8f9fa;
+  background-color: #f5f5f5 !important;
+  color: #333 !important;
   font-weight: bold;
+  padding: 12px 8px;
+  text-align: center;
+  border: 1px solid #ddd;
   white-space: nowrap;
 }
 
 .note-content table td {
+  padding: 10px 8px;
+  border: 1px solid #bdc3c7;
+  text-align: center;
+  vertical-align: middle;
+  background-color: white;
   max-width: 200px;
+  word-wrap: break-word;
+}
+
+/* 表格行条纹效果 */
+.note-content table tbody tr:nth-child(even) td {
+  background-color: #f8f9fa !important;
+}
+
+/* 表格悬停效果 */
+.note-content table tbody tr:hover td {
+  background-color: #e3f2fd !important;
+}
+
+/* 第一列特殊样式（通常是标题列） */
+.note-content table tbody td:first-child {
+  font-weight: bold;
+  background-color: #ecf0f1 !important;
+  text-align: left;
 }
 
 .references {
