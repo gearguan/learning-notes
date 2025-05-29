@@ -136,13 +136,36 @@ document.addEventListener('DOMContentLoaded', function() {
             block: 'center'
           });
           
+          // 找到公式容器进行高亮
+          let elementToHighlight = target;
+          
+          // 如果target是span锚点，找到下一个MathJax容器
+          if (target.tagName === 'SPAN' && target.id.startsWith('eq-')) {
+            const nextElement = target.nextElementSibling;
+            if (nextElement && (nextElement.tagName === 'MJX-CONTAINER' || nextElement.classList.contains('MathJax'))) {
+              elementToHighlight = nextElement;
+            } else {
+              // 如果下一个元素不是公式，可能公式在更复杂的结构中
+              const mathContainer = target.parentElement.querySelector('mjx-container[display="true"], .MathJax_Display');
+              if (mathContainer) {
+                elementToHighlight = mathContainer;
+              }
+            }
+          }
+          
           // 高亮效果
-          target.style.backgroundColor = '#fff3cd';
-          target.style.transition = 'background-color 0.3s ease';
+          const originalBg = elementToHighlight.style.backgroundColor;
+          const originalTransition = elementToHighlight.style.transition;
+          
+          elementToHighlight.style.backgroundColor = '#fff3cd';
+          elementToHighlight.style.transition = 'background-color 0.3s ease';
+          elementToHighlight.style.padding = elementToHighlight.style.padding || '5px';
+          elementToHighlight.style.borderRadius = '4px';
+          
           setTimeout(() => {
-            target.style.backgroundColor = '';
+            elementToHighlight.style.backgroundColor = originalBg;
             setTimeout(() => {
-              target.style.transition = '';
+              elementToHighlight.style.transition = originalTransition;
             }, 300);
           }, 2000);
         } else {
