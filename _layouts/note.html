@@ -68,73 +68,8 @@ window.MathJax = {
   },
   options: {
     skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-  },
-  startup: {
-    ready() {
-      MathJax.startup.defaultReady();
-      // 公式渲染完成后的回调
-      MathJax.startup.promise.then(() => {
-        // 查找所有编号的公式并设置正确的ID
-        document.querySelectorAll('mjx-container[jax="CHTML"][display="true"]').forEach(container => {
-          // 查找对应的脚本标签，获取label
-          let script = container.previousElementSibling;
-          while (script && script.tagName !== 'SCRIPT') {
-            script = script.previousElementSibling;
-          }
-          
-          if (script && script.type === 'math/tex; mode=display') {
-            const labelMatch = script.textContent.match(/\\label\{([^}]+)\}/);
-            if (labelMatch) {
-              const labelId = labelMatch[1];
-              container.id = labelId;
-              container.style.cursor = 'pointer';
-              
-              // 也为编号元素设置点击事件
-              const eqNumber = container.querySelector('.MJX-tex-eqn');
-              if (eqNumber) {
-                eqNumber.style.cursor = 'pointer';
-              }
-            }
-          }
-        });
-        
-        // 重新绑定链接点击事件
-        setupEquationLinks();
-      });
-    }
   }
 };
-
-// 设置公式链接功能
-function setupEquationLinks() {
-  document.querySelectorAll('a[href^="#eq-"]').forEach(link => {
-    link.removeEventListener('click', handleEquationClick); // 避免重复绑定
-    link.addEventListener('click', handleEquationClick);
-  });
-}
-
-function handleEquationClick(e) {
-  e.preventDefault();
-  const targetId = this.getAttribute('href').substring(1);
-  const target = document.getElementById(targetId);
-  
-  if (target) {
-    target.scrollIntoView({
-      behavior: 'smooth',
-      block: 'center'
-    });
-    
-    // 高亮效果
-    target.style.backgroundColor = '#fff3cd';
-    target.style.transition = 'background-color 0.3s ease';
-    setTimeout(() => {
-      target.style.backgroundColor = '';
-      setTimeout(() => {
-        target.style.transition = '';
-      }, 300);
-    }, 2000);
-  }
-}
 </script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -178,39 +113,76 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // 平滑滚动到锚点（排除公式链接，它们有专门的处理）
-  document.querySelectorAll('a[href^="#"]:not([href^="#eq-"])').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const targetId = this.getAttribute('href').substring(1);
-      const target = document.getElementById(targetId);
-      
-      if (target) {
-        target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'center'
-        });
-        // 高亮目标元素
-        target.style.backgroundColor = '#fff3cd';
-        setTimeout(() => {
-          target.style.backgroundColor = '';
-        }, 2000);
-      }
+  // 设置所有锚点链接的跳转功能（包括公式）
+  function setupAllLinks() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        
+        // 尝试多种方式查找目标元素
+        let target = document.getElementById(targetId);
+        
+        // 如果找不到，可能是MathJax公式，尝试查找相关的script标签
+        if (!target) {
+          const scripts = document.querySelectorAll('script[type="math/tex; mode=display"]');
+          for (let script of scripts) {
+            if (script.textContent.includes(`\\label{${targetId}}`)) {
+              // 找到对应的MathJax容器
+              let next = script.nextElementSibling;
+              while (next && !next.matches('mjx-container')) {
+                next = next.nextElementSibling;
+              }
+              if (next) {
+                target = next;
+                target.id = targetId; // 设置正确的ID
+                break;
+              }
+            }
+          }
+        }
+        
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+          });
+          
+          // 高亮效果
+          target.style.backgroundColor = '#fff3cd';
+          target.style.transition = 'background-color 0.3s ease';
+          setTimeout(() => {
+            target.style.backgroundColor = '';
+            setTimeout(() => {
+              target.style.transition = '';
+            }, 300);
+          }, 2000);
+        } else {
+          console.log('Target not found:', targetId);
+        }
+      });
     });
-  });
+  }
   
-  // 如果MathJax已经加载，立即设置公式链接
-  if (window.MathJax && window.MathJax.startup && window.MathJax.startup.promise) {
-    MathJax.startup.promise.then(() => {
-      setupEquationLinks();
-    });
-  } else {
-    // 如果MathJax还没加载，等待一段时间后再试
-    setTimeout(() => {
-      if (window.setupEquationLinks) {
-        setupEquationLinks();
-      }
-    }, 1000);
+  // 立即设置链接
+  setupAllLinks();
+  
+  // 等待MathJax渲染完成后再次设置（使用多种方法确保兼容性）
+  setTimeout(() => {
+    setupAllLinks();
+  }, 1000);
+  
+  setTimeout(() => {
+    setupAllLinks();
+  }, 3000);
+  
+  // 如果MathJax加载了，监听其完成事件
+  if (window.MathJax) {
+    if (MathJax.startup && MathJax.startup.promise) {
+      MathJax.startup.promise.then(() => {
+        setTimeout(setupAllLinks, 500);
+      });
+    }
   }
 });
 
