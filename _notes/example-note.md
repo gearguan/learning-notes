@@ -66,7 +66,7 @@ e^{i\pi} + 1 = 0 \label{eq-3}
 在学习过程中，我们经常需要引用图片。如[图1](#fig-1)所示的流程图说明了学习的基本步骤。
 
 <figure id="fig-1">
-<img src="/images/learning-process.svg" alt="学习流程图" style="width: 100%; max-width: 500px;">
+<img src="{{ '/images/learning-process.svg' | relative_url }}" alt="学习流程图" style="width: 100%; max-width: 500px;">
 <figcaption>学习流程图示例</figcaption>
 </figure>
 
@@ -75,7 +75,7 @@ e^{i\pi} + 1 = 0 \label{eq-3}
 另外，如[图2](#fig-2)所示的概念图展示了知识之间的关系：
 
 <figure id="fig-2">
-<img src="/images/concept-map.png" alt="概念关系图" style="width: 100%; max-width: 600px;">
+<img src="{{ '/images/concept-map.png' | relative_url }}" alt="概念关系图" style="width: 100%; max-width: 600px;">
 <figcaption>概念关系图</figcaption>
 </figure>
 
@@ -145,7 +145,7 @@ e^{i\pi} + 1 = 0 \label{eq-3}
 #### 图片
 ```html
 <figure id="fig-1">
-<img src="/images/example.png" alt="示例图片">
+<img src="{{ '/images/example.png' | relative_url }}" alt="示例图片">
 <figcaption>图片说明</figcaption>
 </figure>
 ```

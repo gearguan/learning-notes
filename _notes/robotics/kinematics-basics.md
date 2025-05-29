@@ -135,7 +135,7 @@ $$\begin{equation}
 如[图1](#fig-forward-kinematics)所示的正运动学过程：
 
 <figure id="fig-forward-kinematics">
-<img src="/images/robotics/forward-kinematics.jpg" alt="正运动学示意图" style="width: 100%; max-width: 700px;">
+<img src="{{ '/images/robotics/forward-kinematics.jpg' | relative_url }}" alt="正运动学示意图" style="width: 100%; max-width: 700px;">
 <figcaption>6自由度机器人正运动学示意图</figcaption>
 </figure>
 

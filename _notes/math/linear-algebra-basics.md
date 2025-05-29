@@ -70,18 +70,15 @@ c\mathbf{v} = \begin{pmatrix} cv_1 \\ cv_2 \\ \vdots \\ cv_n \end{pmatrix} \labe
 
 ### 2.1 矩阵乘法
 
-如[图1](#fig-matrix-mult)所示的矩阵乘法过程：
-
-<figure id="fig-matrix-mult">
-<img src="/images/math/matrix-multiplication.png" alt="矩阵乘法示意图" style="width: 100%; max-width: 600px;">
-<figcaption>矩阵乘法的几何解释</figcaption>
-</figure>
+矩阵乘法可以理解为线性变换的复合操作。
 
 对于矩阵 $\mathbf{A} \in \mathbb{R}^{m \times n}$ 和 $\mathbf{B} \in \mathbb{R}^{n \times p}$，其乘积 $\mathbf{C} = \mathbf{AB}$ 的元素为：
 
 $$\begin{equation}
 c_{ij} = \sum_{k=1}^{n} a_{ik}b_{kj} \label{eq-matrix-mult}
 \end{equation}$$
+
+> **注释**：矩阵乘法不满足交换律，即一般情况下 $\mathbf{A}\mathbf{B} \neq \mathbf{B}\mathbf{A}$。
 
 ## 3. 重要性质总结
 
@@ -131,7 +128,7 @@ c_{ij} = \sum_{k=1}^{n} a_{ik}b_{kj} \label{eq-matrix-mult}
 
 ## 4. 应用实例
 
-根据[公式 (1)](#eq-vector)和[公式 (4)](#eq-matrix-mult)，我们可以解决实际的线性变换问题。如[图1](#fig-matrix-mult)所示，矩阵乘法可以理解为线性变换的复合。
+根据[公式 (1)](#eq-vector)和[公式 (4)](#eq-matrix-mult)，我们可以解决实际的线性变换问题。矩阵乘法可以理解为线性变换的复合，这在计算机图形学、机器学习等领域有广泛应用。
 
 ## 总结
 

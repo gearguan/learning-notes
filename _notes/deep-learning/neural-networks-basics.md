@@ -29,12 +29,13 @@ y = f\left(\sum_{i=1}^{n} w_i x_i + b\right) = f(\mathbf{w}^T\mathbf{x} + b) \la
 
 ### 1.2 多层神经网络
 
-如[图1](#fig-neural-network)所示的典型三层神经网络结构：
+多层神经网络通过组合多个神经元层来实现复杂的非线性映射。典型的三层神经网络包括：
 
-<figure id="fig-neural-network">
-<img src="/images/deep-learning/neural-network-structure.png" alt="神经网络结构图" style="width: 100%; max-width: 600px;">
-<figcaption>三层神经网络结构示意图</figcaption>
-</figure>
+- **输入层**：接收原始数据
+- **隐藏层**：进行特征变换和抽象
+- **输出层**：产生最终预测结果
+
+每层之间通过权重矩阵连接，信息从输入层逐层传递到输出层。
 
 ## 2. 激活函数
 
