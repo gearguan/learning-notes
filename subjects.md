@@ -15,11 +15,11 @@ permalink: /subjects/
 ### 📖 笔记列表
 {% assign math_notes = site.notes | where_exp: "note", "note.categories contains '数学'" %}
 {% for note in math_notes %}
-- [{{ note.title }}]({{ note.url }}) 
+- [{{ note.title }}]({{ note.url | relative_url }}) 
   - 📅 {{ note.date | date: "%Y-%m-%d" }}
   - 🏷️ {% for tag in note.tags %}{{ tag }}{% unless forloop.last %}, {% endunless %}{% endfor %}
   - 📊 难度：{{ note.difficulty }}
-  - 🔗 URL调试：{{ note.url }}
+  - 🔗 URL调试：{{ note.url | relative_url }}
 {% endfor %}
 
 ### 🎯 学习路径建议
@@ -36,11 +36,11 @@ permalink: /subjects/
 ### 📖 笔记列表
 {% assign robotics_notes = site.notes | where_exp: "note", "note.categories contains '机器人学'" %}
 {% for note in robotics_notes %}
-- [{{ note.title }}]({{ note.url }})
+- [{{ note.title }}]({{ note.url | relative_url }})
   - 📅 {{ note.date | date: "%Y-%m-%d" }}
   - 🏷️ {% for tag in note.tags %}{{ tag }}{% unless forloop.last %}, {% endunless %}{% endfor %}
   - 📊 难度：{{ note.difficulty }}
-  - 🔗 URL调试：{{ note.url }}
+  - 🔗 URL调试：{{ note.url | relative_url }}
 {% endfor %}
 
 ### 🎯 学习路径建议
@@ -57,10 +57,11 @@ permalink: /subjects/
 ### 📖 笔记列表
 {% assign dl_notes = site.notes | where_exp: "note", "note.categories contains '深度学习'" %}
 {% for note in dl_notes %}
-- [{{ note.title }}]({{ note.url }})
+- [{{ note.title }}]({{ note.url | relative_url }})
   - 📅 {{ note.date | date: "%Y-%m-%d" }}
   - 🏷️ {% for tag in note.tags %}{{ tag }}{% unless forloop.last %}, {% endunless %}{% endfor %}
   - 📊 难度：{{ note.difficulty }}
+  - 🔗 URL调试：{{ note.url | relative_url }}
 {% endfor %}
 
 ### 🎯 学习路径建议
@@ -77,10 +78,11 @@ permalink: /subjects/
 ### 📖 笔记列表
 {% assign rl_notes = site.notes | where_exp: "note", "note.categories contains '强化学习'" %}
 {% for note in rl_notes %}
-- [{{ note.title }}]({{ note.url }})
+- [{{ note.title }}]({{ note.url | relative_url }})
   - 📅 {{ note.date | date: "%Y-%m-%d" }}
   - 🏷️ {% for tag in note.tags %}{{ tag }}{% unless forloop.last %}, {% endunless %}{% endfor %}
   - 📊 难度：{{ note.difficulty }}
+  - 🔗 URL调试：{{ note.url | relative_url }}
 {% endfor %}
 
 ### 🎯 学习路径建议

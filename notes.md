@@ -13,7 +13,7 @@ permalink: /notes/
 {% assign sorted_notes = site.notes | sort: 'date' | reverse %}
 {% for note in sorted_notes limit:10 %}
 <div class="note-item">
-  <h3><a href="{{ note.url }}">{{ note.title }}</a></h3>
+  <h3><a href="{{ note.url | relative_url }}">{{ note.title }}</a></h3>
   <div class="note-meta">
     <span class="note-date">{{ note.date | date: "%Y年%m月%d日" }}</span>
     {% if note.tags %}
@@ -38,7 +38,7 @@ permalink: /notes/
 ### {{ tag }}
     {% assign tag_notes = site.notes | where_exp: "note", "note.tags contains tag" %}
     {% for note in tag_notes %}
-- [{{ note.title }}]({{ note.url }}) - {{ note.date | date: "%Y-%m-%d" }}
+- [{{ note.title }}]({{ note.url | relative_url }}) - {{ note.date | date: "%Y-%m-%d" }}
     {% endfor %}
   {% endif %}
 {% endfor %}
@@ -46,7 +46,7 @@ permalink: /notes/
 ## 所有笔记
 
 {% for note in sorted_notes %}
-- [{{ note.title }}]({{ note.url }}) - {{ note.date | date: "%Y年%m月%d日" }}
+- [{{ note.title }}]({{ note.url | relative_url }}) - {{ note.date | date: "%Y年%m月%d日" }}
 {% endfor %}
 
 <style>

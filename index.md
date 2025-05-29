@@ -19,14 +19,14 @@ title: "欢迎来到我的学习笔记"
 ## 最新笔记
 
 {% for note in site.notes limit:5 %}
-- [{{ note.title }}]({{ note.url }}) - {{ note.date | date: "%Y-%m-%d" }}
+- [{{ note.title }}]({{ note.url | relative_url }}) - {{ note.date | date: "%Y-%m-%d" }}
 {% endfor %}
 
 ## 开始使用
 
-1. 查看 [示例笔记](/notes/example-note/) 了解如何使用各种功能
-2. 浏览 [学习笔记](/notes/) 查看所有笔记
-3. 了解更多 [关于本站](/about/)
+1. 查看 [示例笔记]({{ "/notes/example-note/" | relative_url }}) 了解如何使用各种功能
+2. 浏览 [学习笔记]({{ "/notes/" | relative_url }}) 查看所有笔记
+3. 了解更多 [关于本站]({{ "/about/" | relative_url }})
 
 ---
 
