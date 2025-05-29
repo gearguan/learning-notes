@@ -99,12 +99,12 @@ y = f\left(\sum_{i=1}^{n} w_i x_i + b\right) = f(\mathbf{w}^T\mathbf{x} + b) \la
 }
 
 .note-content .activation-table thead th {
-  background-color: #2c3e50 !important;
-  color: white !important;
+  background-color: #f5f5f5 !important;
+  color: #333 !important;
   font-weight: bold;
   padding: 12px 8px;
   text-align: center;
-  border: 1px solid #34495e;
+  border: 1px solid #ddd;
 }
 
 .note-content .activation-table tbody td {

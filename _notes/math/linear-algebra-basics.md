@@ -112,12 +112,12 @@ c_{ij} = \sum_{k=1}^{n} a_{ik}b_{kj} \label{eq-matrix-mult}
 }
 
 .note-content .math-properties-table thead th {
-  background-color: #2c3e50 !important;
-  color: white !important;
+  background-color: #f5f5f5 !important;
+  color: #333 !important;
   font-weight: bold;
   padding: 12px 8px;
   text-align: center;
-  border: 1px solid #34495e;
+  border: 1px solid #ddd;
 }
 
 .note-content .math-properties-table tbody td {

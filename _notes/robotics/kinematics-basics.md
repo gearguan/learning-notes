@@ -86,12 +86,12 @@ $$\begin{equation}
 }
 
 .note-content .dh-params-table thead th {
-  background-color: #2c3e50 !important;
-  color: white !important;
+  background-color: #f5f5f5 !important;
+  color: #333 !important;
   font-weight: bold;
   padding: 12px 8px;
   text-align: center;
-  border: 1px solid #34495e;
+  border: 1px solid #ddd;
 }
 
 .note-content .dh-params-table tbody td {
@@ -220,12 +220,12 @@ f(\mathbf{q}) = \mathbf{x}_d \label{eq-inverse-kinematics}
 }
 
 .note-content .solution-analysis-table thead th {
-  background-color: #2c3e50 !important;
-  color: white !important;
+  background-color: #f5f5f5 !important;
+  color: #333 !important;
   font-weight: bold;
   padding: 12px 8px;
   text-align: center;
-  border: 1px solid #34495e;
+  border: 1px solid #ddd;
 }
 
 .note-content .solution-analysis-table tbody td {
