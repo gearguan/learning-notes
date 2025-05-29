@@ -79,8 +79,12 @@ layout: default
             <span class="toggle-icon">▼</span>
           </h4>
           <ul class="subject-notes" id="subject-{{ subject | slugify }}">
-            {% assign subject_notes = site.notes | where: "subject", subject | sort: "date" %}
-            {% for note in subject_notes %}
+            {% comment %} 安全地按日期排序，过滤没有日期的笔记 {% endcomment %}
+            {% assign subject_notes = site.notes | where: "subject", subject %}
+            {% assign notes_with_date = subject_notes | where_exp: "note", "note.date != nil" | sort: "date" %}
+            {% assign notes_without_date = subject_notes | where_exp: "note", "note.date == nil" %}
+            {% assign all_subject_notes = notes_with_date | concat: notes_without_date %}
+            {% for note in all_subject_notes %}
             <li class="note-item {% if note.url == page.url %}current-note{% endif %}">
               <a href="{{ note.url | relative_url }}">{{ note.title }}</a>
               {% if note.difficulty %}
@@ -102,7 +106,11 @@ layout: default
           <span class="toggle-icon">▼</span>
         </h4>
         <ul class="subject-notes" id="subject-uncategorized">
-          {% for note in notes_without_subject %}
+          {% comment %} 安全地按日期排序未分类笔记 {% endcomment %}
+          {% assign uncategorized_with_date = notes_without_subject | where_exp: "note", "note.date != nil" | sort: "date" %}
+          {% assign uncategorized_no_date = notes_without_subject | where_exp: "note", "note.date == nil" %}
+          {% assign all_uncategorized = uncategorized_with_date | concat: uncategorized_no_date %}
+          {% for note in all_uncategorized %}
           <li class="note-item {% if note.url == page.url %}current-note{% endif %}">
             <a href="{{ note.url | relative_url }}">{{ note.title }}</a>
             {% if note.difficulty %}

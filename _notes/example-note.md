@@ -2,7 +2,10 @@
 layout: note
 title: "示例笔记：如何使用交叉引用功能"
 date: 2024-01-15
+categories: [示例]
 tags: [示例, 教程, 数学, 图表]
+subject: "示例"
+difficulty: "入门"
 references:
   - "Jekyll 官方文档: https://jekyllrb.com/"
   - "MathJax 文档: https://docs.mathjax.org/"
