@@ -176,6 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
   padding: 10px;
   border: 1px solid #dee2e6;
   border-radius: 5px;
+  overflow-x: auto;
 }
 
 .note-content .table-caption {
@@ -188,6 +189,8 @@ document.addEventListener('DOMContentLoaded', function() {
   width: 100%;
   border-collapse: collapse;
   margin: 10px 0;
+  min-width: 600px;
+  font-size: 0.9em;
 }
 
 .note-content table th,
@@ -195,11 +198,18 @@ document.addEventListener('DOMContentLoaded', function() {
   border: 1px solid #dee2e6;
   padding: 8px 12px;
   text-align: left;
+  vertical-align: top;
+  word-wrap: break-word;
 }
 
 .note-content table th {
   background-color: #f8f9fa;
   font-weight: bold;
+  white-space: nowrap;
+}
+
+.note-content table td {
+  max-width: 200px;
 }
 
 .references {

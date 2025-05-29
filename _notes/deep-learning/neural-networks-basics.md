@@ -45,14 +45,36 @@ y = f\left(\sum_{i=1}^{n} w_i x_i + b\right) = f(\mathbf{w}^T\mathbf{x} + b) \la
 <div id="table-activation" class="table-wrapper">
 <div class="table-caption">常用激活函数对比</div>
 
-| 激活函数 | 公式 | 范围 | 优点 | 缺点 |
-|----------|------|------|------|------|
-| Sigmoid | $\sigma(x) = \frac{1}{1+e^{-x}}$ | (0,1) | 平滑可导 | 梯度消失 |
-| Tanh | $\tanh(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}}$ | (-1,1) | 零中心 | 梯度消失 |
-| ReLU | $\text{ReLU}(x) = \max(0,x)$ | [0,∞) | 计算简单 | 神经元死亡 |
-| Leaky ReLU | $\text{LReLU}(x) = \max(\alpha x, x)$ | (-∞,∞) | 避免死亡 | 超参数选择 |
+| 激活函数 | 函数表达式 | 输出范围 | 主要优点 | 主要缺点 |
+|----------|------------|----------|----------|----------|
+| Sigmoid | $\sigma(x) = \frac{1}{1+e^{-x}}$ | (0, 1) | 平滑可导 | 梯度消失 |
+| Tanh | $\tanh(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}}$ | (-1, 1) | 零中心化 | 梯度消失 |
+| ReLU | $\max(0, x)$ | [0, ∞) | 计算简单 | 神经元死亡 |
+| Leaky ReLU | $\max(\alpha x, x)$ | (-∞, ∞) | 避免死亡 | 需调参数 |
 
 </div>
+
+### 2.2 激活函数详细说明
+
+**Sigmoid函数**：
+- 公式：$\sigma(x) = \frac{1}{1+e^{-x}}$
+- 特点：输出在0到1之间，常用于二分类
+- 问题：深层网络中容易出现梯度消失
+
+**Tanh函数**：
+- 公式：$\tanh(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}}$
+- 特点：输出以0为中心，收敛速度比Sigmoid快
+- 问题：同样存在梯度消失问题
+
+**ReLU函数**：
+- 公式：$\text{ReLU}(x) = \max(0, x)$
+- 特点：计算简单，有效缓解梯度消失
+- 问题：负值区域梯度为0，可能导致神经元死亡
+
+**Leaky ReLU函数**：
+- 公式：$\text{LeakyReLU}(x) = \max(\alpha x, x)$，其中$\alpha$是小正数（如0.01）
+- 特点：在负值区域保持小的梯度，避免神经元死亡
+- 问题：需要调整超参数$\alpha$
 
 ## 3. 反向传播算法
 
