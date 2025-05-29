@@ -37,14 +37,95 @@ $$\begin{equation}
 <div id="table-dh-params" class="table-wrapper">
 <div class="table-caption">DH参数定义</div>
 
-| 参数 | 符号 | 含义 | 取值范围 |
-|------|------|------|----------|
-| 连杆长度 | $a_i$ | 沿 $x_i$ 轴的距离 | $[0, +\infty)$ |
-| 连杆扭转角 | $\alpha_i$ | 绕 $x_i$ 轴的角度 | $[-\pi, \pi]$ |
-| 关节距离 | $d_i$ | 沿 $z_{i-1}$ 轴的距离 | $(-\infty, +\infty)$ |
-| 关节角 | $\theta_i$ | 绕 $z_{i-1}$ 轴的角度 | $[-\pi, \pi]$ |
+<table class="dh-params-table">
+<thead>
+<tr>
+  <th>参数名称</th>
+  <th>数学符号</th>
+  <th>物理含义</th>
+  <th>取值范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><strong>连杆长度</strong></td>
+  <td>$a_i$</td>
+  <td>沿 $x_i$ 轴的距离</td>
+  <td>$[0, +\infty)$</td>
+</tr>
+<tr>
+  <td><strong>连杆扭转角</strong></td>
+  <td>$\alpha_i$</td>
+  <td>绕 $x_i$ 轴的角度</td>
+  <td>$[-\pi, \pi]$</td>
+</tr>
+<tr>
+  <td><strong>关节距离</strong></td>
+  <td>$d_i$</td>
+  <td>沿 $z_{i-1}$ 轴的距离</td>
+  <td>$(-\infty, +\infty)$</td>
+</tr>
+<tr>
+  <td><strong>关节角</strong></td>
+  <td>$\theta_i$</td>
+  <td>绕 $z_{i-1}$ 轴的角度</td>
+  <td>$[-\pi, \pi]$</td>
+</tr>
+</tbody>
+</table>
 
 </div>
+
+<style>
+.dh-params-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+  font-size: 0.9em;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.dh-params-table thead th {
+  background-color: #2c3e50;
+  color: white;
+  font-weight: bold;
+  padding: 12px 8px;
+  text-align: center;
+  border: 1px solid #34495e;
+}
+
+.dh-params-table tbody td {
+  padding: 10px 8px;
+  border: 1px solid #bdc3c7;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.dh-params-table tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.dh-params-table tbody tr:hover {
+  background-color: #e3f2fd;
+}
+
+.dh-params-table tbody td:first-child {
+  font-weight: bold;
+  background-color: #ecf0f1;
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .dh-params-table {
+    font-size: 0.8em;
+  }
+  
+  .dh-params-table th,
+  .dh-params-table td {
+    padding: 6px 4px;
+  }
+}
+</style>
 
 ## 2. 正运动学
 
@@ -95,13 +176,89 @@ f(\mathbf{q}) = \mathbf{x}_d \label{eq-inverse-kinematics}
 <div id="table-solution-analysis" class="table-wrapper">
 <div class="table-caption">逆运动学解的特性分析</div>
 
-| 情况 | 条件 | 解的数量 | 求解方法 |
-|------|------|----------|----------|
-| 欠驱动 | DOF < 6 | 无解或无穷解 | 伪逆法 |
-| 恰好驱动 | DOF = 6 | 有限解 | 解析法/数值法 |
-| 冗余驱动 | DOF > 6 | 无穷解 | 优化方法 |
+<table class="solution-analysis-table">
+<thead>
+<tr>
+  <th>驱动情况</th>
+  <th>自由度条件</th>
+  <th>解的数量</th>
+  <th>推荐求解方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><strong>欠驱动</strong></td>
+  <td>DOF &lt; 6</td>
+  <td>无解或无穷解</td>
+  <td>伪逆法</td>
+</tr>
+<tr>
+  <td><strong>恰好驱动</strong></td>
+  <td>DOF = 6</td>
+  <td>有限解</td>
+  <td>解析法/数值法</td>
+</tr>
+<tr>
+  <td><strong>冗余驱动</strong></td>
+  <td>DOF &gt; 6</td>
+  <td>无穷解</td>
+  <td>优化方法</td>
+</tr>
+</tbody>
+</table>
 
 </div>
+
+<style>
+.solution-analysis-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+  font-size: 0.9em;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.solution-analysis-table thead th {
+  background-color: #2c3e50;
+  color: white;
+  font-weight: bold;
+  padding: 12px 8px;
+  text-align: center;
+  border: 1px solid #34495e;
+}
+
+.solution-analysis-table tbody td {
+  padding: 10px 8px;
+  border: 1px solid #bdc3c7;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.solution-analysis-table tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.solution-analysis-table tbody tr:hover {
+  background-color: #e3f2fd;
+}
+
+.solution-analysis-table tbody td:first-child {
+  font-weight: bold;
+  background-color: #ecf0f1;
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .solution-analysis-table {
+    font-size: 0.8em;
+  }
+  
+  .solution-analysis-table th,
+  .solution-analysis-table td {
+    padding: 6px 4px;
+  }
+}
+</style>
 
 ## 4. 应用实例
 

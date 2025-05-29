@@ -63,14 +63,95 @@ c_{ij} = \sum_{k=1}^{n} a_{ik}b_{kj} \label{eq-matrix-mult}
 <div id="table-properties" class="table-wrapper">
 <div class="table-caption">向量和矩阵的重要性质</div>
 
-| 运算 | 交换律 | 结合律 | 分配律 |
-|------|--------|--------|--------|
-| 向量加法 | ✓ | ✓ | ✓ |
-| 矩阵加法 | ✓ | ✓ | ✓ |
-| 矩阵乘法 | ✗ | ✓ | ✓ |
-| 数量乘法 | ✓ | ✓ | ✓ |
+<table class="math-properties-table">
+<thead>
+<tr>
+  <th>运算类型</th>
+  <th>交换律</th>
+  <th>结合律</th>
+  <th>分配律</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><strong>向量加法</strong></td>
+  <td>✓</td>
+  <td>✓</td>
+  <td>✓</td>
+</tr>
+<tr>
+  <td><strong>矩阵加法</strong></td>
+  <td>✓</td>
+  <td>✓</td>
+  <td>✓</td>
+</tr>
+<tr>
+  <td><strong>矩阵乘法</strong></td>
+  <td>✗</td>
+  <td>✓</td>
+  <td>✓</td>
+</tr>
+<tr>
+  <td><strong>数量乘法</strong></td>
+  <td>✓</td>
+  <td>✓</td>
+  <td>✓</td>
+</tr>
+</tbody>
+</table>
 
 </div>
+
+<style>
+.math-properties-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+  font-size: 0.9em;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.math-properties-table thead th {
+  background-color: #2c3e50;
+  color: white;
+  font-weight: bold;
+  padding: 12px 8px;
+  text-align: center;
+  border: 1px solid #34495e;
+}
+
+.math-properties-table tbody td {
+  padding: 10px 8px;
+  border: 1px solid #bdc3c7;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.math-properties-table tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.math-properties-table tbody tr:hover {
+  background-color: #e3f2fd;
+}
+
+.math-properties-table tbody td:first-child {
+  font-weight: bold;
+  background-color: #ecf0f1;
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .math-properties-table {
+    font-size: 0.8em;
+  }
+  
+  .math-properties-table th,
+  .math-properties-table td {
+    padding: 6px 4px;
+  }
+}
+</style>
 
 ## 4. 应用实例
 
