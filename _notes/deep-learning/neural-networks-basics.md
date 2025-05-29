@@ -90,7 +90,7 @@ y = f\left(\sum_{i=1}^{n} w_i x_i + b\right) = f(\mathbf{w}^T\mathbf{x} + b) \la
 </div>
 
 <style>
-.activation-table {
+.note-content .activation-table {
   width: 100%;
   border-collapse: collapse;
   margin: 15px 0;
@@ -98,42 +98,44 @@ y = f\left(\sum_{i=1}^{n} w_i x_i + b\right) = f(\mathbf{w}^T\mathbf{x} + b) \la
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-.activation-table thead th {
-  background-color: #2c3e50;
-  color: white;
+.note-content .activation-table thead th {
+  background-color: #2c3e50 !important;
+  color: white !important;
   font-weight: bold;
   padding: 12px 8px;
   text-align: center;
   border: 1px solid #34495e;
 }
 
-.activation-table tbody td {
+.note-content .activation-table tbody td {
   padding: 10px 8px;
   border: 1px solid #bdc3c7;
   text-align: center;
   vertical-align: middle;
+  background-color: white;
 }
 
-.activation-table tbody tr:nth-child(even) {
-  background-color: #f8f9fa;
+.note-content .activation-table tbody tr:nth-child(even) td {
+  background-color: #f8f9fa !important;
 }
 
-.activation-table tbody tr:hover {
-  background-color: #e3f2fd;
+.note-content .activation-table tbody tr:hover td {
+  background-color: #e3f2fd !important;
 }
 
-.activation-table tbody td:first-child {
+.note-content .activation-table tbody td:first-child {
   font-weight: bold;
-  background-color: #ecf0f1;
+  background-color: #ecf0f1 !important;
+  text-align: left;
 }
 
 @media (max-width: 768px) {
-  .activation-table {
+  .note-content .activation-table {
     font-size: 0.8em;
   }
   
-  .activation-table th,
-  .activation-table td {
+  .note-content .activation-table th,
+  .note-content .activation-table td {
     padding: 6px 4px;
   }
 }

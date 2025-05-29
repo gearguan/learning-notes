@@ -103,7 +103,7 @@ c_{ij} = \sum_{k=1}^{n} a_{ik}b_{kj} \label{eq-matrix-mult}
 </div>
 
 <style>
-.math-properties-table {
+.note-content .math-properties-table {
   width: 100%;
   border-collapse: collapse;
   margin: 15px 0;
@@ -111,43 +111,44 @@ c_{ij} = \sum_{k=1}^{n} a_{ik}b_{kj} \label{eq-matrix-mult}
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-.math-properties-table thead th {
-  background-color: #2c3e50;
-  color: white;
+.note-content .math-properties-table thead th {
+  background-color: #2c3e50 !important;
+  color: white !important;
   font-weight: bold;
   padding: 12px 8px;
   text-align: center;
   border: 1px solid #34495e;
 }
 
-.math-properties-table tbody td {
+.note-content .math-properties-table tbody td {
   padding: 10px 8px;
   border: 1px solid #bdc3c7;
   text-align: center;
   vertical-align: middle;
+  background-color: white;
 }
 
-.math-properties-table tbody tr:nth-child(even) {
-  background-color: #f8f9fa;
+.note-content .math-properties-table tbody tr:nth-child(even) td {
+  background-color: #f8f9fa !important;
 }
 
-.math-properties-table tbody tr:hover {
-  background-color: #e3f2fd;
+.note-content .math-properties-table tbody tr:hover td {
+  background-color: #e3f2fd !important;
 }
 
-.math-properties-table tbody td:first-child {
+.note-content .math-properties-table tbody td:first-child {
   font-weight: bold;
-  background-color: #ecf0f1;
+  background-color: #ecf0f1 !important;
   text-align: left;
 }
 
 @media (max-width: 768px) {
-  .math-properties-table {
+  .note-content .math-properties-table {
     font-size: 0.8em;
   }
   
-  .math-properties-table th,
-  .math-properties-table td {
+  .note-content .math-properties-table th,
+  .note-content .math-properties-table td {
     padding: 6px 4px;
   }
 }

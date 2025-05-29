@@ -77,7 +77,7 @@ $$\begin{equation}
 </div>
 
 <style>
-.dh-params-table {
+.note-content .dh-params-table {
   width: 100%;
   border-collapse: collapse;
   margin: 15px 0;
@@ -85,43 +85,44 @@ $$\begin{equation}
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-.dh-params-table thead th {
-  background-color: #2c3e50;
-  color: white;
+.note-content .dh-params-table thead th {
+  background-color: #2c3e50 !important;
+  color: white !important;
   font-weight: bold;
   padding: 12px 8px;
   text-align: center;
   border: 1px solid #34495e;
 }
 
-.dh-params-table tbody td {
+.note-content .dh-params-table tbody td {
   padding: 10px 8px;
   border: 1px solid #bdc3c7;
   text-align: center;
   vertical-align: middle;
+  background-color: white;
 }
 
-.dh-params-table tbody tr:nth-child(even) {
-  background-color: #f8f9fa;
+.note-content .dh-params-table tbody tr:nth-child(even) td {
+  background-color: #f8f9fa !important;
 }
 
-.dh-params-table tbody tr:hover {
-  background-color: #e3f2fd;
+.note-content .dh-params-table tbody tr:hover td {
+  background-color: #e3f2fd !important;
 }
 
-.dh-params-table tbody td:first-child {
+.note-content .dh-params-table tbody td:first-child {
   font-weight: bold;
-  background-color: #ecf0f1;
+  background-color: #ecf0f1 !important;
   text-align: left;
 }
 
 @media (max-width: 768px) {
-  .dh-params-table {
+  .note-content .dh-params-table {
     font-size: 0.8em;
   }
   
-  .dh-params-table th,
-  .dh-params-table td {
+  .note-content .dh-params-table th,
+  .note-content .dh-params-table td {
     padding: 6px 4px;
   }
 }
@@ -210,7 +211,7 @@ f(\mathbf{q}) = \mathbf{x}_d \label{eq-inverse-kinematics}
 </div>
 
 <style>
-.solution-analysis-table {
+.note-content .solution-analysis-table {
   width: 100%;
   border-collapse: collapse;
   margin: 15px 0;
@@ -218,43 +219,44 @@ f(\mathbf{q}) = \mathbf{x}_d \label{eq-inverse-kinematics}
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-.solution-analysis-table thead th {
-  background-color: #2c3e50;
-  color: white;
+.note-content .solution-analysis-table thead th {
+  background-color: #2c3e50 !important;
+  color: white !important;
   font-weight: bold;
   padding: 12px 8px;
   text-align: center;
   border: 1px solid #34495e;
 }
 
-.solution-analysis-table tbody td {
+.note-content .solution-analysis-table tbody td {
   padding: 10px 8px;
   border: 1px solid #bdc3c7;
   text-align: center;
   vertical-align: middle;
+  background-color: white;
 }
 
-.solution-analysis-table tbody tr:nth-child(even) {
-  background-color: #f8f9fa;
+.note-content .solution-analysis-table tbody tr:nth-child(even) td {
+  background-color: #f8f9fa !important;
 }
 
-.solution-analysis-table tbody tr:hover {
-  background-color: #e3f2fd;
+.note-content .solution-analysis-table tbody tr:hover td {
+  background-color: #e3f2fd !important;
 }
 
-.solution-analysis-table tbody td:first-child {
+.note-content .solution-analysis-table tbody td:first-child {
   font-weight: bold;
-  background-color: #ecf0f1;
+  background-color: #ecf0f1 !important;
   text-align: left;
 }
 
 @media (max-width: 768px) {
-  .solution-analysis-table {
+  .note-content .solution-analysis-table {
     font-size: 0.8em;
   }
   
-  .solution-analysis-table th,
-  .solution-analysis-table td {
+  .note-content .solution-analysis-table th,
+  .note-content .solution-analysis-table td {
     padding: 6px 4px;
   }
 }
