@@ -4,7 +4,7 @@ description: "记录学习过程中的知识点、思考和总结"
 author: "gearguan@gmail.com"
 email: "gearguan@gmail.com"
 baseurl: "" # 如果部署到 username.github.io/repository-name，这里填 "/repository-name"
-url: "https://gearguan.github.io" # 您的GitHub Pages URL
+url: "https://gearguan.github.io/learning-notes" # 您的GitHub Pages URL
 
 # 构建设置
 markdown: kramdown
