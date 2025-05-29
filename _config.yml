@@ -64,5 +64,7 @@ navigation:
     url: "/"
   - title: "学习笔记"
     url: "/notes/"
+  - title: "学科分类"
+    url: "/subjects/"
   - title: "关于"
     url: "/about/" 
