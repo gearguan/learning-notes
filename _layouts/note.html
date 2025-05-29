@@ -71,7 +71,6 @@ window.MathJax = {
   }
 };
 </script>
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 <!-- 搜索数据 -->
@@ -115,13 +114,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // 设置所有锚点链接的跳转功能
   function setupAllLinks() {
+    console.log('Setting up links...');
+    
+    // 先检查一下页面上都有哪些ID元素
+    const allIds = Array.from(document.querySelectorAll('[id]')).map(el => el.id);
+    console.log('All IDs found on page:', allIds);
+    
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const targetId = this.getAttribute('href').substring(1);
+        console.log('Clicking link for target:', targetId);
+        
         const target = document.getElementById(targetId);
+        console.log('Found target:', target);
         
         if (target) {
+          console.log('Scrolling to target:', target);
           target.scrollIntoView({
             behavior: 'smooth',
             block: 'center'
@@ -138,6 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
           }, 2000);
         } else {
           console.log('Target not found:', targetId);
+          console.log('Available IDs:', allIds);
         }
       });
     });
@@ -146,14 +156,18 @@ document.addEventListener('DOMContentLoaded', function() {
   // 立即设置链接
   setupAllLinks();
   
-  // MathJax渲染完成后再次设置，确保所有元素都可用
+  // 使用更长的延迟确保MathJax完全加载
+  setTimeout(() => {
+    console.log('Running delayed setup...');
+    setupAllLinks();
+  }, 2000);
+  
+  // MathJax渲染完成后再次设置
   if (window.MathJax && MathJax.startup && MathJax.startup.promise) {
     MathJax.startup.promise.then(() => {
-      setTimeout(setupAllLinks, 100);
+      console.log('MathJax loaded, setting up links...');
+      setTimeout(setupAllLinks, 500);
     });
-  } else {
-    // 备用方案：延迟执行
-    setTimeout(setupAllLinks, 1000);
   }
 });
 
