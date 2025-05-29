@@ -120,29 +120,66 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
         const targetId = this.getAttribute('href').substring(1);
         
+        console.log('Looking for target:', targetId);
+        
         // 尝试多种方式查找目标元素
         let target = document.getElementById(targetId);
+        console.log('Direct getElementById result:', target);
         
         // 如果找不到，可能是MathJax公式，尝试查找相关的script标签
         if (!target) {
-          const scripts = document.querySelectorAll('script[type="math/tex; mode=display"]');
-          for (let script of scripts) {
-            if (script.textContent.includes(`\\label{${targetId}}`)) {
-              // 找到对应的MathJax容器
-              let next = script.nextElementSibling;
-              while (next && !next.matches('mjx-container')) {
-                next = next.nextElementSibling;
-              }
-              if (next) {
-                target = next;
-                target.id = targetId; // 设置正确的ID
-                break;
-              }
+          // 查找所有可能的script类型
+          const allScripts = document.querySelectorAll('script');
+          console.log('Total scripts found:', allScripts.length);
+          
+          const mathScripts = [];
+          allScripts.forEach(script => {
+            if (script.type && script.type.includes('math')) {
+              mathScripts.push(script);
+              console.log('Found math script:', script.type, script.textContent.substring(0, 100));
             }
+          });
+          
+          console.log('Math scripts found:', mathScripts.length);
+          
+          // 查找包含目标label的script
+          for (let script of mathScripts) {
+            if (script.textContent.includes(`\\label{${targetId}}`)) {
+              console.log('Found script with target label:', script);
+              
+              // 查找后续的MathJax容器
+              let next = script.nextElementSibling;
+              let attempts = 0;
+              while (next && attempts < 10) {
+                console.log('Checking element:', next.tagName, next.className);
+                if (next.tagName === 'MJX-CONTAINER' || 
+                    next.classList.contains('MathJax') ||
+                    next.querySelector('mjx-container')) {
+                  target = next;
+                  target.id = targetId;
+                  console.log('Set target ID to:', targetId);
+                  break;
+                }
+                next = next.nextElementSibling;
+                attempts++;
+              }
+              
+              if (target) break;
+            }
+          }
+          
+          // 如果还是找不到，尝试查找所有MathJax容器
+          if (!target) {
+            const mjxContainers = document.querySelectorAll('mjx-container, .MathJax, [class*="MathJax"]');
+            console.log('All MathJax containers found:', mjxContainers.length);
+            mjxContainers.forEach((container, index) => {
+              console.log(`Container ${index}:`, container.tagName, container.className);
+            });
           }
         }
         
         if (target) {
+          console.log('Final target found:', target);
           target.scrollIntoView({
             behavior: 'smooth',
             block: 'center'
