@@ -18,7 +18,7 @@ references:
 ## 1. 坐标系变换
 
 ### 1.1 旋转矩阵
-绕$X$轴旋转：
+绕 $X$ 轴旋转：
 <span id="eq-rotation_matrix_x"></span>
 $$\begin{equation}
 R_{x} = \begin{pmatrix}
@@ -28,7 +28,7 @@ R_{x} = \begin{pmatrix}
 \end{pmatrix} \label{eq-rotation_matrix_x}
 \end{equation}$$
 
-绕$Y$轴旋转：
+绕 $Y$ 轴旋转：
 <span id="eq-rotation_matrix_y"></span>
 $$\begin{equation}
 R_{y} = \begin{pmatrix}
@@ -38,7 +38,7 @@ R_{y} = \begin{pmatrix}
 \end{pmatrix} \label{eq-rotation_matrix_y}
 \end{equation}$$
 
-绕$Z$轴旋转：
+绕 $Z$ 轴旋转：
 <span id="eq-rotation_matrix_z"></span>
 $$\begin{equation}
 R_{z} = \begin{pmatrix}
