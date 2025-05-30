@@ -8,7 +8,7 @@ permalink: /about/
 
 **机械工程师** | **机器人工程师**
 
-**邮箱** gearguan@gmail.com  
+<!-- **邮箱** gearguan@gmail.com -->
 **GitHub** [github.com/gearguan](https://github.com/gearguan)
 
 ---
@@ -77,6 +77,7 @@ permalink: /about/
 
 ## 联系方式
 
-如果您对我的研究感兴趣，或者想要交流学术问题，欢迎通过邮箱联系：gearguan@gmail.com
+邮箱：gearguan@gmail.com
+微信：Yuhang_Guan
 
 *最后更新：{{ site.time | date: "%Y年%m月%d日" }}* 
