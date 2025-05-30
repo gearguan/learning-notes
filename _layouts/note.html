@@ -433,7 +433,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <style>
 .note {
-  max-width: 1200px !important;
+  max-width: 85% !important;
   margin: 0 auto !important;
   padding: 20px 40px !important;
   line-height: 1.6;
@@ -587,7 +587,31 @@ a[href^="#eq-"]:hover {
 }
 
 /* 响应式设计 */
-@media (max-width: 1400px) {
+/* 超高分辨率屏幕 (4K和类似分辨率) */
+@media (min-width: 2560px) {
+  .note {
+    max-width: 2000px !important;
+    padding: 30px 60px !important;
+  }
+}
+
+/* 高分辨率屏幕 */
+@media (min-width: 1920px) and (max-width: 2559px) {
+  .note {
+    max-width: 1600px !important;
+    padding: 25px 50px !important;
+  }
+}
+
+/* 标准大屏幕 */
+@media (min-width: 1400px) and (max-width: 1919px) {
+  .note {
+    max-width: 1200px !important;
+    padding: 20px 40px !important;
+  }
+}
+
+@media (max-width: 1399px) {
   .note {
     max-width: 95% !important;
     padding: 20px 30px !important;
