@@ -15,11 +15,54 @@ difficulty: "无"
 
 ## Legged_gym
 
+项目地址：[Legged Gym](https://github.com/leggedrobotics/legged_gym/tree/master)
+
+ETH苏黎世机器人系统实验室开发的基于Isaac Gym的足式机器人环境。该框架专门用于训练四足机器人在复杂地形上行走，包含了完整的sim-to-real迁移组件。
+
+主要特点：
+- 基于NVIDIA Isaac Gym物理仿真
+- 支持ANYmal等多种足式机器人
+- 包含地形随机化、摩擦随机化、质量随机化
+- 提供噪声观测和训练期间随机推力
+- 完整的PPO强化学习训练流程
+
 ## Humanoid_gym
+
+项目地址：[Humanoid Gym](https://github.com/roboterax/humanoid-gym)
+
+基于NVIDIA Isaac Gym的人形机器人强化学习框架，专注于零样本sim-to-real转移。该框架由RobotEra团队开发，已在XBot-S和XBot-L人形机器人上验证。
+
+主要特点：
+- 专门为人形机器人设计的奖励函数
+- 零样本仿真到现实转移能力
+- 集成sim-to-sim框架（Isaac Gym到Mujoco）
+- 支持多帧低级控制
+- 经过真实机器人验证的政策
 
 ## IsaacEnvs(AMP)
 
+项目地址：[Isaac Gym Envs](https://github.com/isaac-sim/IsaacGymEnvs/tree/main)
+
+NVIDIA官方的Isaac Gym环境集合，包含多种机器人学习任务。其中AMP（Adversarial Motion Priors）是重要组成部分，用于学习自然的运动模式。
+
+主要特点：
+- NVIDIA官方维护的标准环境
+- 包含AMP对抗性运动先验
+- 支持多种机器人类型
+- 高性能GPU并行仿真
+- 丰富的预训练模型和示例
+
 ## NP3O
+
+项目地址：[Locomotion with NP3O](https://github.com/zeonsunlightyu/LocomotionWithNP3O)
+
+基于Natural Policy Gradients with Proximal Policy Optimization的运动控制框架，专注于自然运动学习。
+
+主要特点：
+- 结合自然策略梯度和PPO
+- 专注于自然运动模式学习
+- 改进的策略优化算法
+- 适用于复杂运动控制任务
 
 # 超参数调节
 
