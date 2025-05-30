@@ -13,7 +13,7 @@ difficulty: "无"
 
 # 框架对比
 
-## Legged_gym
+### Legged_gym
 
 项目地址：[Legged Gym](https://github.com/leggedrobotics/legged_gym/tree/master)
 
@@ -26,7 +26,7 @@ ETH苏黎世机器人系统实验室开发的基于Isaac Gym的足式机器人�
 - 提供噪声观测和训练期间随机推力
 - 完整的PPO强化学习训练流程
 
-## Humanoid_gym
+### Humanoid_gym
 
 项目地址：[Humanoid Gym](https://github.com/roboterax/humanoid-gym)
 
@@ -39,7 +39,7 @@ ETH苏黎世机器人系统实验室开发的基于Isaac Gym的足式机器人�
 - 支持多帧低级控制
 - 经过真实机器人验证的政策
 
-## IsaacEnvs(AMP)
+### IsaacEnvs(AMP)
 
 项目地址：[Isaac Gym Envs](https://github.com/isaac-sim/IsaacGymEnvs/tree/main)
 
@@ -52,7 +52,7 @@ NVIDIA官方的Isaac Gym环境集合，包含多种机器人学习任务。其�
 - 高性能GPU并行仿真
 - 丰富的预训练模型和示例
 
-## NP3O
+### NP3O
 
 项目地址：[Locomotion with NP3O](https://github.com/zeonsunlightyu/LocomotionWithNP3O)
 
