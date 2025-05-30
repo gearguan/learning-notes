@@ -68,6 +68,8 @@ NVIDIA官方的Isaac Gym环境集合，包含多种机器人学习任务。其�
 
 - episode length: 可以适当缩短，但不要加长，试了从20秒加到30秒，短时间内 mean reward 飞速上升，但几百轮后策略无法收敛最终失败，尝试几十次无一例外。
 
+-  L2 损失（L2 loss）:也叫均方误差(Mean Squared Error, MSE)，比如当前高度与目标高度的平方差 $(h_current - h_target)^2$。除此之外，还有 L1、Huber、Cross Entropy 等多种损失函数，适用于不同任务和数据特性。选择合适的损失函数对模型性能至关重要。
+
 ## 总结
 
 本笔记介绍了机器人运动学的基础概念：
