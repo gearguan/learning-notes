@@ -19,31 +19,31 @@ references:
 
 ### 1.1 旋转矩阵
 
-<span id="rotation_matrix_x"></span>
+<span id="eq-rotation_matrix_x"></span>
 $$\begin{equation}
 R_{x} = \begin{pmatrix}
 1 & 0 & 0 \\
 0 & \cos(\theta) & -\sin(\theta) \\
 0 & \sin(\theta) & \cos(\theta)
-\end{pmatrix} \label{rotation_matrix_x}
+\end{pmatrix} \label{eq-rotation_matrix_x}
 \end{equation}$$
 
-<span id="rotation_matrix_y"></span>
+<span id="eq-rotation_matrix_y"></span>
 $$\begin{equation}
 R_{x} = \begin{pmatrix}
 \cos(\theta) & 0 & \sin(\theta) \\
 0 & 1 & 0 \\
 -\sin(\theta) & 0 & \cos(\theta)
-\end{pmatrix} \label{rotation_matrix_y}
+\end{pmatrix} \label{eq-rotation_matrix_y}
 \end{equation}$$
 
-<span id="rotation_matrix_z"></span>
+<span id="eq-rotation_matrix_z"></span>
 $$\begin{equation}
 R_{x} = \begin{pmatrix}
 \cos(\theta) & -\sin(\theta) & 0 \\
 \sin(\theta) & \cos(\theta) & 0 \\
 0 & 0 & 1
-\end{pmatrix} \label{rotation_matrix_z}
+\end{pmatrix} \label{eq-rotation_matrix_z}
 \end{equation}$$
 
 ### 1.2 齐次变换矩阵

@@ -153,19 +153,33 @@ document.addEventListener('DOMContentLoaded', function() {
             }
           }
           
-          // 高亮效果
-          const originalBg = elementToHighlight.style.backgroundColor;
-          const originalTransition = elementToHighlight.style.transition;
+          // 如果target是表格容器，高亮整个表格容器
+          if (target.classList && target.classList.contains('table-wrapper')) {
+            elementToHighlight = target;
+          }
           
+          // 清除之前的高亮效果
+          document.querySelectorAll('.highlighted-element').forEach(el => {
+            el.classList.remove('highlighted-element');
+            el.style.backgroundColor = '';
+            el.style.transition = '';
+            el.style.padding = '';
+            el.style.borderRadius = '';
+          });
+          
+          // 高亮效果
+          elementToHighlight.classList.add('highlighted-element');
           elementToHighlight.style.backgroundColor = '#fff3cd';
           elementToHighlight.style.transition = 'background-color 0.3s ease';
           elementToHighlight.style.padding = elementToHighlight.style.padding || '5px';
           elementToHighlight.style.borderRadius = '4px';
           
+          // 2秒后移除高亮
           setTimeout(() => {
-            elementToHighlight.style.backgroundColor = originalBg;
+            elementToHighlight.style.backgroundColor = '';
             setTimeout(() => {
-              elementToHighlight.style.transition = originalTransition;
+              elementToHighlight.classList.remove('highlighted-element');
+              elementToHighlight.style.transition = '';
             }, 300);
           }, 2000);
         } else {
@@ -176,20 +190,123 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   
+  // 自动更新公式引用编号
+  function updateFormulaReferences() {
+    console.log('Updating formula references...');
+    
+    // 等待MathJax渲染完成
+    if (window.MathJax && MathJax.startup && MathJax.startup.promise) {
+      MathJax.startup.promise.then(() => {
+        setTimeout(() => {
+          // 获取所有公式锚点，按在文档中的顺序排列
+          const formulaAnchors = Array.from(document.querySelectorAll('span[id^="eq-"]'));
+          console.log('Found formula anchors:', formulaAnchors.map(a => a.id));
+          
+          // 创建ID到编号的映射
+          const idToNumber = {};
+          formulaAnchors.forEach((anchor, index) => {
+            idToNumber[anchor.id] = index + 1;
+          });
+          
+          console.log('Formula ID to number mapping:', idToNumber);
+          
+          // 更新所有公式引用链接
+          document.querySelectorAll('a[href^="#eq-"]').forEach(link => {
+            const targetId = link.getAttribute('href').substring(1);
+            const formulaNumber = idToNumber[targetId];
+            
+            if (formulaNumber) {
+              // 保持原有文本格式，只更新数字
+              const currentText = link.textContent;
+              const newText = currentText.replace(/\d+/, formulaNumber);
+              link.textContent = newText;
+              console.log(`Updated link text from "${currentText}" to "${newText}"`);
+            }
+          });
+          
+          // 同样处理表格引用
+          const tableContainers = Array.from(document.querySelectorAll('div[id^="table-"]'));
+          const tableIdToNumber = {};
+          tableContainers.forEach((container, index) => {
+            tableIdToNumber[container.id] = index + 1;
+          });
+          
+          document.querySelectorAll('a[href^="#table-"]').forEach(link => {
+            const targetId = link.getAttribute('href').substring(1);
+            const tableNumber = tableIdToNumber[targetId];
+            
+            if (tableNumber) {
+              const currentText = link.textContent;
+              const newText = currentText.replace(/\d+/, tableNumber);
+              link.textContent = newText;
+              console.log(`Updated table link text from "${currentText}" to "${newText}"`);
+            }
+          });
+          
+          // 同样处理图片引用
+          const figureContainers = Array.from(document.querySelectorAll('figure[id^="fig-"]'));
+          const figureIdToNumber = {};
+          figureContainers.forEach((container, index) => {
+            figureIdToNumber[container.id] = index + 1;
+          });
+          
+          document.querySelectorAll('a[href^="#fig-"]').forEach(link => {
+            const targetId = link.getAttribute('href').substring(1);
+            const figureNumber = figureIdToNumber[targetId];
+            
+            if (figureNumber) {
+              const currentText = link.textContent;
+              const newText = currentText.replace(/\d+/, figureNumber);
+              link.textContent = newText;
+              console.log(`Updated figure link text from "${currentText}" to "${newText}"`);
+            }
+          });
+          
+        }, 1000);
+      });
+    } else {
+      // 如果MathJax不可用，直接执行
+      setTimeout(() => {
+        const formulaAnchors = Array.from(document.querySelectorAll('span[id^="eq-"]'));
+        const idToNumber = {};
+        formulaAnchors.forEach((anchor, index) => {
+          idToNumber[anchor.id] = index + 1;
+        });
+        
+        document.querySelectorAll('a[href^="#eq-"]').forEach(link => {
+          const targetId = link.getAttribute('href').substring(1);
+          const formulaNumber = idToNumber[targetId];
+          if (formulaNumber) {
+            const currentText = link.textContent;
+            const newText = currentText.replace(/\d+/, formulaNumber);
+            link.textContent = newText;
+          }
+        });
+      }, 1000);
+    }
+  }
+  
   // 立即设置链接
   setupAllLinks();
+  
+  // 更新公式引用编号
+  updateFormulaReferences();
   
   // 使用更长的延迟确保MathJax完全加载
   setTimeout(() => {
     console.log('Running delayed setup...');
     setupAllLinks();
+    updateFormulaReferences();
   }, 2000);
   
   // MathJax渲染完成后再次设置
   if (window.MathJax && MathJax.startup && MathJax.startup.promise) {
     MathJax.startup.promise.then(() => {
       console.log('MathJax loaded, setting up links...');
-      setTimeout(setupAllLinks, 500);
+      setTimeout(() => {
+        setupAllLinks();
+        updateFormulaReferences();
+      }, 500);
     });
   }
 });
