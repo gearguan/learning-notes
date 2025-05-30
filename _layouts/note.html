@@ -433,9 +433,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <style>
 .note {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px 40px;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 20px 40px !important;
   line-height: 1.6;
   position: relative;
 }
@@ -589,21 +589,21 @@ a[href^="#eq-"]:hover {
 /* 响应式设计 */
 @media (max-width: 1400px) {
   .note {
-    max-width: 95%;
-    padding: 20px 30px;
+    max-width: 95% !important;
+    padding: 20px 30px !important;
   }
 }
 
 @media (max-width: 768px) {
   .note {
-    max-width: 100%;
-    padding: 15px 20px;
+    max-width: 100% !important;
+    padding: 15px 20px !important;
   }
 }
 
 @media (max-width: 480px) {
   .note {
-    padding: 10px 15px;
+    padding: 10px 15px !important;
   }
 }
 

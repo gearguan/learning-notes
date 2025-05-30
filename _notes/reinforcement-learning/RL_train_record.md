@@ -59,7 +59,7 @@ NVIDIA官方的Isaac Gym环境集合，包含多种机器人学习任务。其�
 基于Natural Policy Gradients with Proximal Policy Optimization的运动控制框架，专注于自然运动学习。
 
 主要特点：
-- 结合自然策略梯度和PPO
+- 结合自然策略梯度和PPO 
 - 专注于自然运动模式学习
 - 改进的策略优化算法
 - 适用于复杂运动控制任务
