@@ -17,7 +17,18 @@ references:
 
 ## 1. 坐标系变换
 
-### 1.1 齐次变换矩阵
+### 1.1 旋转矩阵
+
+<span id="rotation_matrix_x"></span>
+$$\begin{equation}
+\mathcal{R}_{x} = \begin{pmatrix}
+1 & 0 & 0 \\
+0 & \cos(\theta) & -\sin(\theta) \\
+0 & \sin(\theta) & \cos(\theta)
+\end{pmatrix} \label{rotation_matrix_x}
+\end{equation}$$
+
+### 1.2 齐次变换矩阵
 
 机器人各关节之间的位置关系可以用齐次变换矩阵表示，如[公式 (1)](#eq-transform)所示：
 
