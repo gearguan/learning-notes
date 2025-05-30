@@ -2,6 +2,47 @@
 layout: default
 ---
 
+<!-- 强制宽度样式 -->
+<style type="text/css">
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.note, article.note, .note-content {
+  max-width: none !important;
+  width: 85% !important;
+  margin: 0 auto !important;
+  padding: 20px 40px !important;
+  box-sizing: border-box !important;
+}
+
+/* 超高分辨率屏幕优化 */
+@media screen and (min-width: 2560px) {
+  .note, article.note, .note-content {
+    width: 2000px !important;
+    max-width: 2000px !important;
+    padding: 30px 60px !important;
+  }
+}
+
+@media screen and (min-width: 1920px) and (max-width: 2559px) {
+  .note, article.note, .note-content {
+    width: 1600px !important;
+    max-width: 1600px !important;
+    padding: 25px 50px !important;
+  }
+}
+
+@media screen and (min-width: 1400px) and (max-width: 1919px) {
+  .note, article.note, .note-content {
+    width: 1200px !important;
+    max-width: 1200px !important;
+    padding: 20px 40px !important;
+  }
+}
+</style>
+
 <article class="note">
   <!-- 顶部搜索功能 -->
   <div class="top-search">
@@ -799,4 +840,63 @@ a[href^="#eq-"]:hover {
   color: #6c757d;
   font-style: italic;
 }
-</style> 
+</style>
+
+<!-- 自动应用宽屏布局的脚本 -->
+<script>
+// 立即执行函数，在页面加载时就应用宽屏样式
+(function() {
+  function applyWideLayout() {
+    const note = document.querySelector('.note') || document.querySelector('article.note');
+    if (!note) return;
+    
+    const screenWidth = window.innerWidth;
+    console.log('Screen width:', screenWidth);
+    
+    // 移除所有现有的样式限制
+    note.style.maxWidth = 'none';
+    note.style.margin = '0 auto';
+    note.style.boxSizing = 'border-box';
+    
+    // 根据屏幕宽度设置合适的宽度
+    if (screenWidth >= 2560) {
+      // 4K屏幕
+      note.style.width = '2000px';
+      note.style.padding = '30px 60px';
+      console.log('Applied 4K layout');
+    } else if (screenWidth >= 1920) {
+      // 高分辨率屏幕
+      note.style.width = '1600px';
+      note.style.padding = '25px 50px';
+      console.log('Applied high-res layout');
+    } else if (screenWidth >= 1400) {
+      // 标准大屏幕
+      note.style.width = '1200px';
+      note.style.padding = '20px 40px';
+      console.log('Applied standard large layout');
+    } else {
+      // 较小屏幕
+      note.style.width = '95%';
+      note.style.padding = '20px 30px';
+      console.log('Applied responsive layout');
+    }
+    
+    console.log('Applied width:', note.style.width);
+  }
+  
+  // 页面加载完成后立即应用
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', applyWideLayout);
+  } else {
+    applyWideLayout();
+  }
+  
+  // 窗口大小改变时重新应用
+  window.addEventListener('resize', applyWideLayout);
+  
+  // 额外的保险措施：延迟执行
+  setTimeout(applyWideLayout, 100);
+  setTimeout(applyWideLayout, 500);
+  setTimeout(applyWideLayout, 1000);
+})();
+</script> 
