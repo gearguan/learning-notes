@@ -433,9 +433,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <style>
 .note {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 20px 40px;
   line-height: 1.6;
   position: relative;
 }
@@ -587,9 +587,23 @@ a[href^="#eq-"]:hover {
 }
 
 /* 响应式设计 */
+@media (max-width: 1400px) {
+  .note {
+    max-width: 95%;
+    padding: 20px 30px;
+  }
+}
+
 @media (max-width: 768px) {
   .note {
-    padding: 10px;
+    max-width: 100%;
+    padding: 15px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .note {
+    padding: 10px 15px;
   }
 }
 
