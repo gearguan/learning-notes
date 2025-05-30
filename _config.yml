@@ -1,6 +1,6 @@
 # 网站基本信息
-title: "我的学习笔记"
-description: "记录学习过程中的知识点、思考和总结"
+title: "学习笔记"
+description: "机器人学、强化学习、深度学习领域的学习笔记和研究总结"
 author: "gearguan@gmail.com"
 email: "gearguan@gmail.com"
 baseurl: "/learning-notes" # 修正为正确的仓库名
@@ -66,5 +66,5 @@ navigation:
     url: "/notes/"
   - title: "学科分类"
     url: "/subjects/"
-  - title: "关于"
+  - title: "关于我"
     url: "/about/" 
