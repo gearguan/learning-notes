@@ -1,4 +1,6 @@
 ---
+published: false
+exclude: true
 layout: home
 title: "学习笔记"
 ---

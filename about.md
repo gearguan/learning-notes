@@ -6,7 +6,7 @@ permalink: /about/
 
 # 管宇航
 
-**机械工程师 | 机器人工程师**
+**机械工程师** | **机器人工程师**
 
 **邮箱** gearguan@gmail.com  
 **GitHub** [github.com/gearguan](https://github.com/gearguan)
@@ -42,7 +42,7 @@ permalink: /about/
 ## 教育背景
 
 **硕士 - 机械电子工程**  
-布伦瑞克工业大学(TU Braunschweig)
+布伦瑞克工业大学(TU Braunschweig)，2016年-2020年
 
 **本科 - 机械工程及自动化**  
 北京交通大学，2010-2014年
