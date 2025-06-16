@@ -20,6 +20,8 @@ permalink: /about/
 ---
 
 ## 专业技能
+- **机械原理/设计, SolidWorks, Nx**
+- **FEM, ANSYS**
 
 ### 编程语言
 - **Python** - 机器学习、深度学习、数据分析
@@ -27,10 +29,9 @@ permalink: /about/
 - **MATLAB** - 控制算法、仿真建模
 
 ### 技术框架
-- **深度学习** - PyTorch, TensorFlow, JAX
-- **强化学习** - Isaac Gym, Stable Baselines3, Ray RLlib
-- **机器人** - ROS, Gazebo, MoveIt
-- **仿真环境** - Isaac Sim, Mujoco, PyBullet
+- **强化学习** - Isaac Gym
+- **机器人** - ROS/ROS2, Gazebo
+- **仿真环境** - Isaac Gym, Mujoco
 
 ### 研究领域
 - 机械臂运动控制
@@ -42,10 +43,10 @@ permalink: /about/
 ## 教育背景
 
 **硕士 - 机械电子工程**  
-布伦瑞克工业大学(TU Braunschweig)，2016年-2020年
+布伦瑞克工业大学(TU Braunschweig), 2016年-2020年
 
 **本科 - 机械工程及自动化**  
-北京交通大学，2010-2014年
+北京交通大学, 2010-2014年
 
 ---
 
