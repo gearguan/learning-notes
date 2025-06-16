@@ -26,6 +26,7 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
+  - jekyll-last-modified-at
 
 # 排除文件
 exclude:
@@ -60,10 +61,6 @@ defaults:
 
 # 导航菜单
 navigation:
-  - title: "首页"
-    url: "/"
-  - title: "学习笔记"
-    url: "/notes/"
   - title: "学科分类"
     url: "/subjects/"
   - title: "关于我"

@@ -14,6 +14,7 @@ group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.12"
   gem "jekyll-sitemap"
   gem "jekyll-seo-tag"
+  gem "jekyll-last-modified-at"
 end
 
 # Windows 和 JRuby 不包含 zoneinfo 文件，需要 tzinfo-data gem
