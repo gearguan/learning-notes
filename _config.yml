@@ -59,9 +59,13 @@ defaults:
     values:
       layout: "note"
 
-# 导航菜单
-navigation:
-  - title: "学科分类"
-    url: "/subjects/"
-  - title: "关于我"
-    url: "/about/" 
+# 导航菜单配置
+minima:
+  nav_pages:
+    - subjects.md
+    - about.md
+  # 社交媒体链接
+  social_links:
+    - title: "GitHub"
+      icon: "github"
+      url: "https://github.com/gearguan" 
