@@ -1,7 +1,5 @@
 ---
-published: false
-exclude: true
-layout: home
+layout: default
 title: "学习笔记"
 ---
 
