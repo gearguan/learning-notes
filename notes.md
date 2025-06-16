@@ -1,7 +1,8 @@
 ---
-layout: page
+layout: default
 title: "学习笔记"
 permalink: /notes/
+nav_exclude: true
 ---
 
 # 学习笔记
