@@ -59,13 +59,10 @@ defaults:
     values:
       layout: "note"
 
-# 导航菜单配置
-minima:
-  nav_pages:
-    - subjects.md
-    - about.md
-  # 社交媒体链接
-  social_links:
-    - title: "GitHub"
-      icon: "github"
-      url: "https://github.com/gearguan" 
+# 导航菜单配置 - 只显示指定的页面
+header_pages:
+  - subjects.md
+  - about.md
+
+# 社交媒体链接配置
+github_username: gearguan 
