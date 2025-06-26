@@ -164,7 +164,7 @@ MIT License
 ## 联系方式
 
 - 邮箱：gearguan@gmail.com
-- GitHub：[@gearguan](https://github.com/gearguan)
+- GitHub：[gearguan](https://github.com/gearguan)
 
 ---
 
